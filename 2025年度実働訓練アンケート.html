@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>2025年度実働訓練アンケート</title>
+<style>
+:root{--pr:#1a4a7a;--pl:#2563a8;--ac:#e85d26;--bg:#f4f6f9;--cd:#fff;--tx:#1e2d3d;--ts:#5a6a7a;--bd:#d0dbe8;--gr:#2e7d52;--er:#c0392b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'HGMaruGothicMPRO','HG丸ゴシックM-PRO',Meiryo,'Yu Gothic UI',sans-serif;font-weight:700;background:var(--bg);color:var(--tx);min-height:100vh;}
+.hdr{background:linear-gradient(135deg,#0f2d4a,#1a4a7a);color:#fff;padding:32px 0 0;position:relative;overflow:hidden;}
+.hdr-in{max-width:720px;margin:0 auto;position:relative;z-index:1;padding:32px 16px 32px;}
+.badge{display:inline-block;background:var(--ac);color:#fff;font-size:11px;padding:2px 10px;border-radius:2px;margin-bottom:10px;font-weight:700;letter-spacing:.08em;}
+.hdr h1{font-size:clamp(17px,4vw,23px);font-weight:700;letter-spacing:.04em;margin-bottom:12px;line-height:1.4;}
+.hdr p{font-size:13px;line-height:1.8;color:rgba(255,255,255,.85);max-width:580px;}
+.req-note{font-size:11px;color:rgba(255,255,255,.55);margin-top:10px;}
+.req-note span{color:#ff8a65;}
+.pb-wrap{max-width:720px;margin:16px auto 0;padding:0 16px;}
+.pb{height:4px;background:var(--bd);border-radius:2px;overflow:hidden;}
+.pf{height:100%;background:linear-gradient(90deg,var(--pr),var(--ac));border-radius:2px;transition:width .4s;}
+.con{max-width:720px;margin:0 auto;padding:20px 16px 60px;}
+.sh{background:linear-gradient(90deg,var(--pr),var(--pl));color:#fff;padding:10px 18px;border-radius:6px 6px 0 0;font-size:13px;font-weight:700;margin-top:24px;}
+.qw{background:var(--cd);border:1px solid var(--bd);border-top:none;padding:18px 18px 14px;}
+.qw:last-child{border-radius:0 0 6px 6px;}
+.ql{font-size:14px;font-weight:700;line-height:1.7;margin-bottom:10px;}
+.qn{display:inline-block;background:var(--pr);color:#fff;font-size:11px;min-width:26px;height:19px;line-height:19px;text-align:center;border-radius:3px;margin-right:7px;font-weight:700;vertical-align:middle;}
+.req{color:var(--ac);margin-left:3px;}
+.hint{font-size:11px;color:var(--ts);margin-bottom:8px;margin-top:-6px;}
+.opts{display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:center;gap:10px;padding:9px 13px;border:1.5px solid var(--bd);border-radius:6px;cursor:pointer;transition:all .15s;background:#fafbfc;font-size:13.5px;user-select:none;}
+.opt:hover{border-color:var(--pl);background:#edf3fb;}
+.opt input[type=radio]{display:none;}
+.rd{width:19px;height:19px;border:2px solid var(--bd);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.opt input[type=radio]:checked+.rd{border-color:var(--pr);background:var(--pr);}
+.opt input[type=radio]:checked+.rd::after{content:'';width:6px;height:6px;background:#fff;border-radius:50%;}
+.opt.sel{border-color:var(--pr);background:#edf3fb;}
+.opt.sel .ot{color:var(--pr);font-weight:700;}
+.frt{width:100%;min-height:90px;border:1.5px solid var(--bd);border-radius:6px;padding:10px 13px;font-family:inherit;font-size:13.5px;font-weight:700;line-height:1.7;color:var(--tx);background:#fafbfc;resize:vertical;}
+.frt:focus{outline:none;border-color:var(--pl);}
+.err-msg{display:none;color:var(--er);font-size:12px;margin-top:8px;padding:6px 11px;background:#fff0f0;border-radius:4px;border-left:3px solid var(--er);}
+.err-msg.show{display:block;}
+.qw.has-err{outline:2px solid var(--er);}
+.nav{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;padding-top:16px;border-top:1px solid var(--bd);}
+.btn{padding:10px 26px;border-radius:6px;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer;border:none;transition:all .15s;}
+.btn-p{background:var(--pr);color:#fff;}
+.btn-p:hover{background:var(--pl);transform:translateY(-1px);box-shadow:0 4px 10px rgba(26,74,122,.3);}
+.btn-s{background:#fff;color:var(--pr);border:1.5px solid var(--pr);}
+.btn-s:hover{background:#edf3fb;}
+.btn-sub{background:linear-gradient(135deg,var(--gr),#1b5e38);color:#fff;padding:12px 34px;font-size:14px;}
+.btn-sub:hover{transform:translateY(-2px);box-shadow:0 5px 16px rgba(46,125,82,.35);}
+.pg{display:none;}
+.pg.act{display:block;}
+.ty{display:none;text-align:center;background:var(--cd);border-radius:8px;border:1px solid var(--bd);margin-top:20px;overflow:hidden;}
+.ty.show{display:block;}
+.ty-content{padding:48px 20px 32px;}
+.ty-ic{width:60px;height:60px;background:var(--gr);border-radius:50%;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff;}
+.ty h2{font-size:20px;color:var(--pr);margin-bottom:10px;}
+.ty p{font-size:13.5px;color:var(--ts);line-height:1.8;}
+.ty-photo{width:100%;display:none;position:relative;}
+.ty-photo.show{display:block;}
+.ty-photo img{width:100%;height:auto;display:block;}
+.ty-photo::before{content:'';position:absolute;top:0;left:0;right:0;height:60px;background:linear-gradient(to top,rgba(255,255,255,0),rgba(255,255,255,1));z-index:1;}
+.ty-bg{display:none;}
+/* ADMIN */
+.adm-btn{position:fixed;bottom:20px;right:20px;background:var(--pr);color:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:18px;cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,.25);z-index:100;transition:all .2s;}
+.adm-btn:hover{background:var(--pl);transform:scale(1.1);}
+.adm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center;}
+.adm-overlay.show{display:flex;}
+.adm-box{background:#fff;border-radius:10px;width:min(700px,96vw);max-height:90vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3);}
+.adm-hdr{background:linear-gradient(90deg,var(--pr),var(--pl));color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}
+.adm-hdr h2{font-size:16px;font-weight:700;}
+.adm-close{background:none;border:none;color:#fff;font-size:20px;cursor:pointer;line-height:1;}
+.adm-body{flex:1;overflow-y:auto;padding:20px;}
+.adm-tabs{display:flex;border-bottom:2px solid var(--bd);margin-bottom:16px;}
+.adm-tab{padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;border:none;background:none;color:var(--ts);border-bottom:3px solid transparent;margin-bottom:-2px;font-family:inherit;transition:all .15s;}
+.adm-tab.act{color:var(--pr);border-bottom-color:var(--pr);}
+.adm-foot{padding:14px 20px;border-top:1px solid var(--bd);display:none;gap:10px;align-items:center;}
+.adm-foot.show{display:flex;}
+.btn-save{background:var(--gr);color:#fff;border:none;border-radius:6px;padding:9px 24px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;}
+.btn-save:hover{opacity:.9;}
+.btn-rst{background:none;border:1.5px solid var(--bd);border-radius:6px;padding:9px 18px;font-size:13px;color:var(--ts);cursor:pointer;font-family:inherit;font-weight:700;}
+.btn-rst:hover{border-color:var(--er);color:var(--er);}
+.save-ok{color:var(--gr);font-size:13px;margin-right:auto;display:none;}
+.save-ok.show{display:inline;}
+/* LOGIN */
+.login-wrap{display:flex;flex-direction:column;gap:14px;max-width:300px;margin:20px auto;}
+.login-wrap h3{font-size:15px;text-align:center;}
+.login-wrap input{padding:10px 13px;border:1.5px solid var(--bd);border-radius:6px;font-size:14px;font-family:inherit;font-weight:700;width:100%;}
+.login-wrap input:focus{outline:none;border-color:var(--pl);}
+.login-err{color:var(--er);font-size:12px;display:none;text-align:center;}
+.login-err.show{display:block;}
+/* EDITOR */
+.sec-item{border:1.5px solid var(--bd);border-radius:6px;overflow:hidden;margin-bottom:8px;}
+.sec-hd{display:flex;align-items:center;gap:8px;padding:10px 14px;cursor:pointer;background:#f7f9fc;}
+.sec-hd:hover{background:#edf3fb;}
+.sec-hd-t{flex:1;font-size:13.5px;font-weight:700;}
+.sec-ar{font-size:11px;color:var(--ts);}
+.sec-bd{display:none;padding:12px 14px;border-top:1px solid var(--bd);}
+.sec-bd.open{display:block;}
+.qed{border:1px solid var(--bd);border-radius:6px;padding:12px;margin-bottom:10px;background:#fafbfc;}
+.qed-top{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px;}
+.qed-top textarea{flex:1;border:1.5px solid var(--bd);border-radius:5px;padding:7px 10px;font-size:13px;font-family:inherit;font-weight:700;line-height:1.6;resize:vertical;min-height:52px;}
+.qed-top textarea:focus{outline:none;border-color:var(--pl);}
+.qed-del{background:none;border:none;color:var(--er);font-size:18px;cursor:pointer;padding:2px;line-height:1;flex-shrink:0;}
+.qed-opts{display:flex;flex-direction:column;gap:5px;margin-bottom:8px;}
+.opt-row{display:flex;gap:6px;align-items:center;}
+.opt-row input{flex:1;border:1.5px solid var(--bd);border-radius:5px;padding:5px 9px;font-size:12.5px;font-family:inherit;font-weight:700;}
+.opt-row input:focus{outline:none;border-color:var(--pl);}
+.opt-del{background:none;border:none;color:var(--ts);font-size:15px;cursor:pointer;}
+.opt-del:hover{color:var(--er);}
+.add-opt-btn{width:100%;border:1px dashed var(--bd);border-radius:4px;padding:4px 10px;font-size:12px;color:var(--ts);cursor:pointer;background:none;font-family:inherit;font-weight:700;}
+.add-opt-btn:hover{border-color:var(--pl);color:var(--pl);}
+.qed-req{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--ts);margin-top:6px;}
+.add-q-btn{width:100%;border:1.5px dashed var(--pl);background:none;border-radius:6px;padding:9px;font-size:13px;color:var(--pl);cursor:pointer;margin-top:6px;font-family:inherit;font-weight:700;}
+.add-q-btn:hover{background:#edf3fb;}
+/* RESULTS */
+.res-stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+.stat-card{background:linear-gradient(135deg,var(--pr),var(--pl));color:#fff;border-radius:8px;padding:14px 18px;min-width:110px;text-align:center;}
+.stat-card .num{font-size:26px;font-weight:700;}
+.stat-card .lbl{font-size:10px;opacity:.85;margin-top:2px;}
+.res-sec{margin-bottom:24px;border:1px solid var(--bd);border-radius:8px;overflow:hidden;}
+.res-sec-hdr{background:linear-gradient(90deg,var(--pr),var(--pl));color:#fff;padding:10px 16px;font-size:13px;font-weight:700;}
+.res-sec-body{padding:14px;}
+.res-q{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid #f0f0f0;}
+.res-q:last-child{border:none;margin-bottom:0;padding-bottom:0;}
+.res-q-text{font-size:13px;font-weight:700;margin-bottom:8px;line-height:1.5;}
+.res-q-n{font-size:11px;color:var(--ts);margin-bottom:6px;}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.bar-lbl{font-size:11.5px;width:160px;flex-shrink:0;text-align:right;line-height:1.3;}
+.bar-wrap{flex:1;background:#f0f2f5;border-radius:4px;height:20px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;}
+.bar-fill span{font-size:10.5px;font-weight:700;color:#fff;}
+.bar-cnt{font-size:11px;color:var(--ts);width:36px;flex-shrink:0;}
+.free-wrap{background:#f7f9fc;border-radius:6px;padding:10px 12px;}
+.free-item{font-size:13px;padding:5px 0;border-bottom:1px solid #eee;line-height:1.6;}
+.free-item:last-child{border:none;}
+.no-data{text-align:center;padding:40px;color:var(--ts);font-size:14px;}
+/* DESIGN */
+.ds-sec{margin-bottom:22px;}
+.ds-sec-title{font-size:13px;font-weight:700;color:var(--pr);border-bottom:2px solid var(--pr);padding-bottom:6px;margin-bottom:14px;}
+.ds-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
+.ds-lbl{font-size:12.5px;font-weight:700;min-width:110px;flex-shrink:0;}
+.ds-input{border:1.5px solid var(--bd);border-radius:5px;padding:6px 10px;font-size:13px;font-family:inherit;font-weight:700;background:#fff;flex:1;min-width:160px;}
+.ds-input:focus{outline:none;border-color:var(--pl);}
+.ds-color{width:38px;height:30px;border:1.5px solid var(--bd);border-radius:5px;cursor:pointer;padding:1px 2px;}
+.ds-range{flex:1;accent-color:var(--pr);}
+.ds-range-val{font-size:12px;color:var(--ts);min-width:36px;text-align:right;}
+.ds-presets{display:flex;gap:6px;flex-wrap:wrap;}
+.ds-dot{width:26px;height:26px;border-radius:4px;cursor:pointer;border:2px solid transparent;box-shadow:0 1px 4px rgba(0,0,0,.15);transition:all .15s;flex-shrink:0;}
+.ds-dot:hover,.ds-dot.act{border-color:var(--pr);transform:scale(1.1);}
+.ds-select{border:1.5px solid var(--bd);border-radius:5px;padding:6px 10px;font-size:13px;font-family:inherit;font-weight:700;background:#fff;cursor:pointer;flex:1;}
+.ds-textarea{width:100%;border:1.5px solid var(--bd);border-radius:5px;padding:8px 10px;font-size:13px;font-family:inherit;font-weight:700;line-height:1.6;resize:vertical;min-height:70px;}
+.ds-textarea:focus{outline:none;border-color:var(--pl);}
+.ds-img-prev{width:100%;height:60px;border-radius:6px;background:#f0f2f5;border:1.5px dashed var(--bd);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ts);overflow:hidden;margin-bottom:8px;}
+.ds-img-prev img{width:100%;height:100%;object-fit:cover;}
+.ds-file-btn{font-size:12px;padding:6px 14px;border:1.5px solid var(--pl);border-radius:5px;color:var(--pl);background:#fff;cursor:pointer;font-family:inherit;font-weight:700;}
+.ds-file-btn:hover{background:#edf3fb;}
+.ds-clear-btn{font-size:12px;padding:6px 12px;border:1.5px solid var(--bd);border-radius:5px;color:var(--ts);background:#fff;cursor:pointer;font-family:inherit;font-weight:700;}
+.ds-clear-btn:hover{border-color:var(--er);color:var(--er);}
+.confirm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9999;align-items:center;justify-content:center;}
+.confirm-overlay.show{display:flex;}
+.confirm-box{background:#fff;border-radius:12px;padding:32px 28px;max-width:360px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.4);text-align:center;}
+.confirm-icon{font-size:44px;margin-bottom:14px;}
+.confirm-box h3{font-size:17px;font-weight:700;color:var(--tx);margin-bottom:10px;}
+.confirm-box p{font-size:13px;color:var(--ts);line-height:1.8;margin-bottom:22px;}
+.confirm-btns{display:flex;gap:10px;justify-content:center;}
+.confirm-btn-cancel{padding:10px 24px;border-radius:6px;border:1.5px solid var(--bd);background:#fff;color:var(--ts);font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;}
+.confirm-btn-cancel:hover{border-color:var(--pr);color:var(--pr);}
+.confirm-btn-delete{padding:10px 24px;border-radius:6px;border:none;background:#c0392b;color:#fff;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;}
+.confirm-btn-delete:hover{background:#a93226;}
+
+
+/* ===== HERO PHOTO ===== */
+.hero-photo{max-width:720px;margin:0 auto;padding:0 16px;overflow:hidden;display:none;position:relative;}
+.hero-photo.show{display:block;}
+.hero-photo img{width:100%;height:auto;display:block;border-radius:6px;}
+.hero-photo::before{content:'';position:absolute;top:0;left:0;right:0;height:60px;background:linear-gradient(to bottom,rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);pointer-events:none;z-index:1;}
+.hero-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0.5) 40%,rgba(255,255,255,0.85) 70%,rgba(255,255,255,1) 100%);pointer-events:none;z-index:1;}
+.hero-photo-empty{width:100%;height:160px;background:#e8edf2;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:13px;}
+
+
+.hdr::after{}
+
+/* PRINT */
+#print-area{display:none;}
+@media print{
+  body>*:not(#print-area){display:none!important;}
+  #print-area{display:block!important;}
+  .print-hdr{margin-bottom:20px;border-bottom:2px solid #1a4a7a;padding-bottom:10px;}
+  .print-hdr h1{font-size:18px;color:#1a4a7a;}
+  .print-hdr p{font-size:11px;color:#666;margin-top:4px;}
+  .res-sec{page-break-inside:avoid;margin-bottom:16px;}
+  .res-sec-hdr,.bar-fill,.stat-card{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="status-banner" id="status-banner" style="display:none;">&#128683; 現在、このアンケートは受付を停止しています</div>
+<div class="hdr" id="site-hdr">
+<div class="hdr-in">
+<div class="badge" id="hdr-badge">2025年度</div>
+<h1 id="hdr-title">実働訓練アンケート</h1>
+<p id="hdr-desc">訓練、大変お疲れ様でした。災害拠点病院として、当院が果たさなければならない役割に向かって、少しずつですが、近づいていけるようにしたいと思います。皆様のご協力・ご尽力に感謝いたします。今後の改善のために役立てたいと思いますので、下記のアンケートにお答えください。</p>
+<p class="req-note" id="hdr-reqnote"><span id="hdr-reqspan">*</span><span id="hdr-reqtext"> は必須の質問です</span></p>
+</div>
+</div>
+<div class="hero-photo" id="hero-photo"></div>
+<div class="pb-wrap"><div class="pb"><div class="pf" id="pf" style="width:0%"></div></div></div>
+<div class="con">
+<div id="survey-area"></div>
+<div class="ty" id="ty">
+<div class="ty-content">
+<div class="ty-ic">&#10003;</div>
+<h2>ご回答ありがとうございました</h2>
+<p>アンケートへのご協力に深く感謝いたします。<br>皆様のご意見を今後の訓練改善に活用させていただきます。</p>
+</div>
+<div class="ty-photo" id="ty-photo"></div>
+</div>
+</div>
+<button class="adm-btn" onclick="openAdm()" title="管理画面">&#9881;</button>
+<div class="adm-overlay" id="adm-overlay">
+<div class="adm-box">
+<div class="adm-hdr">
+<h2>&#128295; アンケート管理画面</h2>
+<button class="adm-close" onclick="closeAdm()">&#10005;</button>
+</div>
+<div class="adm-body" id="adm-body"></div>
+<div class="adm-foot" id="adm-foot">
+<span class="save-ok" id="save-ok"></span>
+<button class="btn-rst" id="foot-rst" onclick="footRst()"></button>
+<button class="btn-save" id="foot-save" onclick="footSave()"></button>
+</div>
+</div>
+</div>
+<div id="print-area"></div>
+<div class="confirm-overlay" id="confirm-overlay">
+<div class="confirm-box">
+<div class="confirm-icon">&#128465;</div>
+<h3 id="confirm-title">削除の確認</h3>
+<p id="confirm-msg"></p>
+<div class="confirm-btns">
+<button class="confirm-btn-cancel" onclick="closeConfirm()">キャンセル</button>
+<button class="confirm-btn-delete" id="confirm-ok-btn">削除する</button>
+</div>
+</div>
+</div>
+<script>
+var DEFAULT_SECTIONS = [{"id": "s_chotoku", "title": "当直医師・当直師長・DMAT医師への質問です", "questions": [{"id": "q2", "text": "発災直後の院内放送で、防災センターに集合できましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q3", "text": "時間外発災のフローチャートを確認しながら対応できましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q4", "text": "暫定本部（時間外受付前）で役割分担ができましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q5", "text": "被害状況報告書を徴収し、院内の被害状況を把握できましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q6", "text": "院内の被害状況から被災レベルから災害対応を決定できましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q7", "text": "病院出入口をマニュアル通りに閉鎖することを指示できましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q8", "text": "災害対応へ移行する・院内職員が大ホールに参集する指示の院内放送ができましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q9", "text": "必要物品をもって、大ホールに移動できましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q10", "text": "大ホールに移動後の担当部門は？", "opts": ["本部長・設備支援・院外・警備部門", "情報部門（クロノロ、伝令含む）", "職員部門", "診療部門"], "required": true, "branch": true, "branchKey": "honbu_mae"}]}, {"id": "s_byoto", "title": "病棟勤務看護師、手術室・救外当直看護師への質問です", "questions": [{"id": "q11", "text": "発災後、リーダーから被害状況を確認するよう指示されましたか？", "opts": ["細かく指示された", "指示された", "あまり指示されなかった", "全く指示されなかった"], "required": true}, {"id": "q12", "text": "自部門の被害状況を確認し、院内放送で、被害状況報告書を提出できましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q13", "text": "（手術室のみ）手術室稼働状況表を記載し、提出できましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q14", "text": "院内放送で、職員配備カードをもって、大ホールに参集できましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q15", "text": "大ホールで活動の役割を指示されましたか？", "opts": ["細かく指示された", "指示された", "あまり指示されなかった", "全く指示されなかった", "該当しない"], "required": true}, {"id": "q16", "text": "大ホールに移動後の担当部門は？", "opts": ["情報部門（クロノロ、伝令含む）", "職員部門", "診療部門"], "required": true, "branch": true, "branchKey": "honbu_mae"}]}, {"id": "s_comedy", "title": "コメディ・防災センター・ビル管理当直者への質問です", "questions": [{"id": "q17", "text": "発災後、自部門の被害状況を確認し、被害状況報告書を記載できましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q18", "text": "院内放送で、被害状況報告書を提出できましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q19", "text": "（防災センターのみ）エレベーター被害状況報告書を記載し、提出できましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q20", "text": "院内放送で、職員配備カードを提出できましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q21", "text": "あなたの部署は？", "opts": ["薬剤部", "中央放射線", "中央検査", "給食", "防災センター", "ビル管理"], "required": true, "branch": true, "branchKey": "comedy_dept"}]}, {"id": "s_iten", "title": "院内にたまたまいた医師への質問です", "questions": [{"id": "q22", "text": "院内放送で、職員配備カードをもって、大ホールに参集できましたか？", "opts": ["速やかに参集できた", "参集できた", "遅れたが参集できた", "参集できなかった", "該当しない"], "required": true}, {"id": "q23", "text": "大ホールで活動の役割を指示されましたか？", "opts": ["細かく指示された", "指示された", "あまり指示されなかった", "全く指示されなかった", "該当しない"], "required": true}, {"id": "q24", "text": "大ホールに移動後の担当部門は？", "opts": ["本部長・設備支援・院外・警備部門", "情報部門（クロノロ、伝令含む）", "職員部門", "診療部門"], "required": true, "branch": true, "branchKey": "honbu_mae"}]}, {"id": "s_gaiin", "title": "院外から参集した職員への質問です", "questions": [{"id": "q25", "text": "職員配備カードが正しく記入できましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q26", "text": "大ホールに参集し、職員登録できましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q27", "text": "本部職員部門で、活動部門を指示されましたか？", "opts": ["細かく指示された", "指示された", "あまり指示されなかった", "全く指示されなかった", "該当しない"], "required": true}, {"id": "q28", "text": "担当部門は？", "opts": ["本部：本部長・設備支援・院外・警備部門", "本部：情報部門（クロノロ、伝令含む）", "本部：職員部門", "本部：診療部門", "赤（重症）", "黄（中等症）", "緑（軽症）", "トリアージ・整理誘導・総合案内", "黒（死亡管理）", "搬送", "入院待機", "手術室", "ICU", "中央放射線", "中央検査", "薬剤部", "インフラ整備"], "required": true, "branch": true, "branchKey": "all_dept"}]}, {"id": "s_shicyo", "title": "全一般病棟師長への質問です", "questions": [{"id": "q29", "text": "ICU・HCUから転出可能な患者の情報を得たうえでＩCU・HCU患者を受入れることができましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q30", "text": "本部からの入院依頼を受けたうえで患者を受入れることができましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q31", "text": "患者到着後、本部（入院調整統括者）に入院患者が到着したことを連絡することができましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q32", "text": "電カル内の大規模災害時の院内情報からライフライン状況、各診療科の窓口医師、可能な検査などの情報を得ることができましたか？", "opts": ["良くできた", "大体できた", "半分くらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_kanja", "title": "患者役への質問です", "questions": [{"id": "q33", "text": "災害対応に関する院内放送はわかりやすかったですか？", "opts": ["とても分かりやすかった", "分かりやすかった", "あまり分かりやすくなかった", "分かりやすくなかった"], "required": true}, {"id": "q34", "text": "トリアージに並んだ際の案内は分かりやすかったですか？", "opts": ["とても分かりやすかった", "分かりやすかった", "あまり分かりやすくなかった", "分かりやすくなかった"], "required": true}, {"id": "q35", "text": "トリアージでのタグ記載方法は分かりやすかったですか？", "opts": ["とても分かりやすかった", "分かりやすかった", "あまり分かりやすくなかった", "分かりやすくなかった"], "required": true}, {"id": "q36", "text": "トリアージはスムーズでしたか？", "opts": ["とてもスムーズだった", "スムーズだった", "あまりスムーズではなかった", "スムーズではなかった", "該当しない"], "required": true}, {"id": "q37", "text": "緑エリアでの予診の際、傷病に応じた診察ブースに振り分けられましたか？", "opts": ["振り分けられた", "振り分けられなかった", "該当しない"], "required": true}, {"id": "q38", "text": "緑エリアでの診療後、次にどこへ行けばよいのかが分かりやすかったですか？", "opts": ["分かりやすかった", "あまり分かりやすくなかった", "分かりやすくなかった", "該当しない"], "required": true}, {"id": "q39", "text": "緑エリアから、レントゲンへ行く方法は分かりやすかったですか？", "opts": ["分かりやすかった", "あまり分かりやすくなかった", "分かりやすくなかった", "該当しない"], "required": true}, {"id": "q40", "text": "緑エリアの担当者は、活動の仕方を理解しているようでしたか？", "opts": ["十分理解しているようだった", "理解しているようだった", "あまり理解しているようではなかった", "理解しているようではなかった", "該当しない"], "required": true}, {"id": "q41", "text": "黄エリアの担当者は、活動の仕方を理解しているようでしたか？", "opts": ["十分理解しているようだった", "理解しているようだった", "あまり理解しているようではなかった", "理解しているようではなかった", "該当しない"], "required": true}, {"id": "q42", "text": "赤エリアの担当者は、活動の仕方を理解しているようでしたか？", "opts": ["十分理解しているようだった", "理解しているようだった", "あまり理解しているようではなかった", "理解しているようではなかった", "該当しない"], "required": true}]}, {"id": "s_advisor", "title": "アドバイザーへの質問です", "questions": [{"id": "q265", "text": "あなたはアドバイザーとしてどの部門を担当しましたか？", "opts": ["本部長・副本部長", "職員統括", "診療統括・診療支援", "情報統括", "赤（重症）", "黄（中等症）", "緑（軽症）", "トリアージ", "手術室・ICU・HCU・死亡管理", "入院待機・一般病棟"], "required": true, "branch": true, "branchKey": "adv_dept"}]}, {"id": "s_hm", "title": "本部長・設備支援・院外情報・警備部門（前半）への質問です", "questions": [{"id": "q43", "text": "ショートミーティングを行い、本部内部門の設営担当を確認・指示できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q44", "text": "アクションカードを確認し、活動できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q45", "text": "部門の資機材を取りに行き、迅速に設営できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q46", "text": "給水の状況を把握できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q47", "text": "電気・自家発の状況を把握できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q48", "text": "エレベーターの状況を把握できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q49", "text": "職員登録はできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q50", "text": "本部内各部門の設営状況をふまえて、統括者ミーティングを行うことができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q51", "text": "担当部門は？", "opts": ["本部：本部長・設備支援・院外・警備部門", "本部：情報部門（クロノロ、伝令含む）", "本部：職員部門", "本部：診療部門", "赤（重症）", "黄（中等症）", "緑（軽症）", "トリアージ・整理誘導・総合案内", "黒（死亡管理）", "搬送", "入院待機", "手術室", "ICU", "中央放射線", "中央検査", "薬剤部", "インフラ整備"], "required": true, "branch": true, "branchKey": "all_dept"}]}, {"id": "s_jm", "title": "本部情報部門（前半）への質問です", "questions": [{"id": "q52", "text": "アクションカードを確認し、活動できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q53", "text": "病棟・Ope室・救外から参集した看護師・補助士に役割を指示できましたか？（当直師長）", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q54", "text": "情報部門担当者に設営を指示できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q55", "text": "部門の資機材を取りに行き、迅速に設営できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q56", "text": "GCU看護師にクロノロを記載するよう指示できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q57", "text": "被害状況報告書一覧表を掲示し、院内状況を確認できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q58", "text": "被害状況報告書原本をクリアファイルに入れ、ホワイトボードに貼付できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q59", "text": "給水の状況を把握し、ホワイトボードに掲示できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q60", "text": "電気・自家発の状況を把握し、ホワイトボードに掲示できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q61", "text": "エレベーターの状況を把握し、ホワイトボードに掲示できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q62", "text": "可能な検査について把握し、ホワイトボードに掲示できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q63", "text": "被害状況報告書が出ていないエリアのうち、災害対応に必要な外来エリアの被害状況を確認に行かせることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q64", "text": "職員登録はできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q65", "text": "統括者ミーティングで、病棟・外来・ライフライン・電カル・可能な検査等の情報を共有できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q66", "text": "トランシーバーを配布できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q67", "text": "トランシーバーのスイッチをON、デジタル22を確認するよう指示できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q68", "text": "トランシーバーの通信確認はできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q69", "text": "担当部門は？", "opts": ["本部：本部長・設備支援・院外・警備部門", "本部：情報部門（クロノロ、伝令含む）", "本部：職員部門", "本部：診療部門", "赤（重症）", "黄（中等症）", "緑（軽症）", "トリアージ・整理誘導・総合案内", "黒（死亡管理）", "搬送", "入院待機", "手術室", "ICU", "中央放射線", "中央検査", "薬剤部", "インフラ整備"], "required": true, "branch": true, "branchKey": "all_dept"}]}, {"id": "s_sm", "title": "本部職員部門（前半）への質問です", "questions": [{"id": "q70", "text": "アクションカードを確認し、活動できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q71", "text": "院内から参集した医師、病棟・オペ室・救外看護師・看護補助士に役割を付与できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q72", "text": "職員部門担当者に設営を指示できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q73", "text": "部門の資機材を取りに行き、迅速に設営できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q74", "text": "本部に参集している職員を順次、職員登録できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q75", "text": "勤務中の職員の配備カードを徴収し、ホワイトボードに掲示できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q76", "text": "参集している医師に、初療の統括者を割り当てることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q77", "text": "統括者PHS番号表を作成することができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q78", "text": "作成した統括者PHS番号表を20部コピーし、統括者ミーティングで配布できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q79", "text": "統括者ミーティングで職員の参集状況と指名した統括者を共有することができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q80", "text": "受け入れ開始後の担当部門は？", "opts": ["本部：本部長・設備支援・院外・警備部門", "本部：情報部門（クロノロ、伝令含む）", "本部：職員部門", "本部：診療部門", "赤（重症）", "黄（中等症）", "緑（軽症）", "トリアージ・整理誘導・総合案内", "黒（死亡管理）", "搬送", "入院待機", "手術室", "ICU", "中央放射線", "中央検査", "薬剤部", "インフラ整備"], "required": true, "branch": true, "branchKey": "all_dept"}]}, {"id": "s_dm", "title": "本部診療部門（前半）への質問です", "questions": [{"id": "q81", "text": "アクションカードを確認し、活動できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q82", "text": "部門の資機材を取りに行き、迅速に設営できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q83", "text": "被害状況報告書より、空床状況を把握できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q84", "text": "被害状況報告書より、手術室の稼働状況を把握できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q85", "text": "被害状況報告書より、可能な検査を把握できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q86", "text": "職員登録はできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q87", "text": "受け入れ開始後の担当部門は？", "opts": ["本部：本部長・設備支援・院外・警備部門", "本部：情報部門（クロノロ、伝令含む）", "本部：職員部門", "本部：診療部門", "赤（重症）", "黄（中等症）", "緑（軽症）", "トリアージ・整理誘導・総合案内", "黒（死亡管理）", "搬送", "入院待機", "手術室", "ICU", "中央放射線", "中央検査", "薬剤部", "インフラ整備"], "required": true, "branch": true, "branchKey": "all_dept"}]}, {"id": "s_hg", "title": "本部長・設備支援・院外情報・警備部門（後半）への質問です", "questions": [{"id": "q88", "text": "前任者からの情報の引継ぎができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q89", "text": "アクションカードを確認し、活動できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q90", "text": "給水の状況を把握できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q91", "text": "緊急遮断弁を解除できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q92", "text": "中等度節水のための断水の指示を出すことができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q93", "text": "節水の放送ができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q94", "text": "電気・自家発の状況を把握できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q95", "text": "節電の放送ができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q96", "text": "エレベーターの状況を把握できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q97", "text": "エレベーター状況の放送ができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q98", "text": "エレベーター再稼働の放送ができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q99", "text": "対処必要な案件をTODOリストにアップし、その対応を行うことができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q100", "text": "ライフライン状況を電カルにアップできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q101", "text": "クロノロを確認し、情報収集できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q102", "text": "適宜、現状分析し、活動方針を立てることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q103", "text": "EMIS（緊急時入力・詳細入力）を入力できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q104", "text": "テレビをスクリーンに映すことができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q105", "text": "病院北側の信号機付き交差点からの一般車両の進入を封鎖するか協議、決定し、警備現場統括者に指示できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q106", "text": "警備現場統括者を任命し、派遣できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_jg", "title": "本部情報部門（後半）への質問です", "questions": [{"id": "q107", "text": "前任者からの情報の引継ぎができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q108", "text": "アクションカードを確認し、活動できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q109", "text": "被害状況報告書一覧を確認し、病院の被害状況を把握できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q110", "text": "被害状況報告書を未提出の場所に、被害状況を確認しに行かせることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q111", "text": "担当部門内でブリーフィングし、誰が何をするかを確認・指示できましたか？（統括者）あるいは、指示されて自分がやるべきことが理解できましたか？（統括者以外）", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q112", "text": "クロノロを確認し、情報収集できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q113", "text": "クロノロに情報を伝達し、記録できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q114", "text": "適宜、部門内で現状分析し、活動方針を立てることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q115", "text": "トランシーバーで本部と初療エリア間の通信が適切にできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q116", "text": "被災傷病者一覧表をエリア別に掲示し、回収したタグから患者情報を記載できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q117", "text": "赤・黄エリア内に滞在する傷病者のタグをホワイトボードに掲示できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q118", "text": "入院となった傷病者情報を、付箋で入院調整部門から受け取り、被災傷病者一覧表へ記入できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q119", "text": "被災傷病者の転帰を一覧表へ記入できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q120", "text": "定期的に、サテライト薬局へ行き、帰宅した患者のタグ・紙カルテを回収し、転帰を記載できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q121", "text": "転帰後、タグを色分けして保管できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q122", "text": "被災傷病者一覧表をPCに入力できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q123", "text": "クロノロをPCに入力できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_sg", "title": "本部職員部門（後半）への質問です", "questions": [{"id": "q124", "text": "前任者からの情報の引継ぎができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q125", "text": "アクションカードを確認し、活動できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q126", "text": "担当部門内でブリーフィングし、誰が何をするかを確認・指示できましたか？（統括者）あるいは、指示されて自分がやるべきことが理解できましたか？（統括者以外）", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q127", "text": "統括者PHS番号表を作成し、電カルにアップできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q128", "text": "職員配備カードで、職員の配備状況を把握することができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q129", "text": "窓口医師PHS番号表を作成し、電カルにアップできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q130", "text": "被害状況報告書から、院内職員の受傷状況を把握することができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q131", "text": "不足する職員の派遣要請に対し、迅速に対応できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q132", "text": "適宜、部門内で現状分析し、活動方針を立てることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q133", "text": "職員補充の要求など重要な情報をホワイトボードに記録し、付箋や複写メモでクロノロへ伝達できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q134", "text": "名古屋市立大学安否情報システムから、院外職員の安否状況を確認できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_dg", "title": "本部診療部門（後半）への質問です", "questions": [{"id": "q135", "text": "前任者からの情報の引継ぎができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q136", "text": "アクションカードを確認し、活動できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q137", "text": "担当部門内でブリーフィングし、誰が何をするかを確認・指示できましたか？（統括者）あるいは、指示されて自分がやるべきことが理解できましたか？（統括者以外）", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q138", "text": "被害状況報告書から空床数を把握し、ホワイトボードに記載できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q139", "text": "情報部門トランシーバー記録担当者から入ってくる入院依頼患者情報を付箋で受け取り、入院病棟を采配することができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q140", "text": "患者の入院を、ICUと一般病棟に分けてスムーズに采配できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q141", "text": "入院先が決定したら、遅滞なく初療エリアへ入院病棟を連絡できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q142", "text": "エレベーター非稼働時の入院待機エリアへの入院患者収容時には、エレベーターが再開したら上がる入院病棟を合わせて確保できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q143", "text": "救急車からの傷病者受け入れ要請に対し適切に対応できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q144", "text": "救急車の受け入れ要請などの重要な情報をホワイトボードに記録し、付箋や複写メモでクロノロへ伝達できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q145", "text": "適宜、部門内で現状分析し、活動方針を立てることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_aka", "title": "重症部門（赤エリア）への質問です", "questions": [{"id": "q146", "text": "前任統括者からの情報の引継ぎができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q147", "text": "アクションカードを確認し、活動できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q148", "text": "担当部門内でブリーフィングし、誰が何をするかを確認・指示できましたか？（統括者）あるいは、指示されて自分がやるべきことが理解できましたか？（統括者以外）", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q149", "text": "部門の設営が迅速にできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q150", "text": "トランシーバーで立ち上げ完了の報告ができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q151", "text": "ホワイトボードに指揮命令系統図を記載できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q152", "text": "ホワイトボードにクロノロを記載できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q153", "text": "ホワイトボードに傷病者リストを適切に記録できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q154", "text": "災害患者IDを使用できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q155", "text": "カルテ記載を適切に行うことができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q156", "text": "緊急度に応じた優先順位で治療を進めることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q157", "text": "Xp.CTの画像診断がスムーズにできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q158", "text": "入院を本部に依頼できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q159", "text": "患者の入院先決定の指示が本部からスムーズにきましたか？", "opts": ["スムーズにきた", "どちらともいえない", "スムーズにこなかった", "該当しない"], "required": true}, {"id": "q160", "text": "職員・医療資源の不足分を本部に依頼できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q161", "text": "本部から適切かつ迅速に職員・医療資源が供給されましたか？", "opts": ["適切かつ迅速に供給された", "どちらともいえない", "供給されたが適切かつ迅速ではなかった", "供給されなかった", "該当しない"], "required": true}, {"id": "q162", "text": "可能な検査やライフライン状況、他部門の統括者や窓口医師情報を電カルから把握できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q163", "text": "トランシーバーで本部との通信が適切にできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q164", "text": "適宜、部門内で現状分析し、活動方針を立てることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_ki", "title": "中等症部門（黄エリア）への質問です", "questions": [{"id": "q165", "text": "前任統括者からの情報の引継ぎができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q166", "text": "アクションカードを確認し、活動できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q167", "text": "担当部門内でブリーフィングし、誰が何をするかを確認・指示できましたか？（統括者）あるいは、指示されて自分がやるべきことが理解できましたか？（統括者以外）", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q168", "text": "部門の設営が迅速にできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q169", "text": "トランシーバーで立ち上げ完了の報告ができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q170", "text": "ホワイトボードに指揮命令系統図を記載できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q171", "text": "ホワイトボードにクロノロを記載できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q172", "text": "ホワイトボードに傷病者リストを適切に記録できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q173", "text": "災害患者IDを使用できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q174", "text": "カルテ記載を適切に行うことができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q175", "text": "緊急度に応じた優先順位で治療を進めることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q176", "text": "Xp.CTの画像診断がスムーズにできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q177", "text": "入院を本部に依頼できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q178", "text": "患者の入院先決定の指示が本部からスムーズにきましたか？", "opts": ["スムーズにきた", "どちらともいえない", "スムーズにこなかった", "該当しない"], "required": true}, {"id": "q179", "text": "職員・医療資源の不足分を本部に依頼できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q180", "text": "本部から適切かつ迅速に職員・医療資源が供給されましたか？", "opts": ["適切かつ迅速に供給された", "どちらともいえない", "供給されたが適切かつ迅速ではなかった", "供給されなかった", "該当しない"], "required": true}, {"id": "q181", "text": "可能な検査やライフライン状況、他部門の統括者や窓口医師情報を電カルから把握できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q182", "text": "トランシーバーで本部との通信が適切にできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q183", "text": "適宜、部門内で現状分析し、活動方針を立てることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_midori", "title": "軽症部門（緑エリア）への質問です", "questions": [{"id": "q184", "text": "前任統括者からの情報の引継ぎができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q185", "text": "アクションカードを確認し、活動できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q186", "text": "担当部門内でブリーフィングし、誰が何をするかを確認・指示できましたか？（統括者）あるいは、指示されて自分がやるべきことが理解できましたか？（統括者以外）", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q187", "text": "部門の設営が迅速にできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q188", "text": "トランシーバーで立ち上げ完了の報告ができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q189", "text": "ホワイトボードに指揮命令系統図を記載できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q190", "text": "ホワイトボードにクロノロを記載できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q191", "text": "ホワイトボードに傷病者リストを適切に記録できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q192", "text": "受付で災害患者IDリストを使用し、緑患者一覧表を作成できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q193", "text": "タグ裏面に診療の記載を適切に行うことができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q194", "text": "予診により、傷病に応じたブースに振り分けることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q195", "text": "緊急度に応じた優先順位で治療を進めることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q196", "text": "Xp.CTの画像診断がスムーズにできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q197", "text": "サテライト薬局を通って、帰宅させることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q198", "text": "職員・医療資源の不足分を本部に依頼できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q199", "text": "本部から適切かつ迅速に職員・医療資源が供給されましたか？", "opts": ["適切かつ迅速に供給された", "どちらともいえない", "供給されたが適切かつ迅速ではなかった", "供給されなかった", "該当しない"], "required": true}, {"id": "q200", "text": "可能な検査やライフライン状況、他部門の統括者や窓口医師情報を電カルから把握できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q201", "text": "トランシーバーで本部との通信が適切にできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q202", "text": "適宜、部門内で現状分析し、活動方針を立てることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_triage", "title": "トリアージエリア、整理誘導・総合案内への質問です", "questions": [{"id": "q203", "text": "前任統括者からの情報の引継ぎができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q204", "text": "アクションカードを確認し、活動できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q205", "text": "担当部門内でブリーフィングし、誰が何をするかを確認・指示できましたか？（統括者）あるいは、指示されて自分がやるべきことが理解できましたか？（統括者以外）", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q206", "text": "部門の設営が迅速にできましたか？", "opts": ["全くできなかった", "ほとんどできなかった", "まあまあできた", "大体できた", "良くできた", "該当しない"], "required": true}, {"id": "q207", "text": "トランシーバーで立ち上げ完了の報告ができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q208", "text": "タグに災害患者IDを記載し、ボードに準備できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q209", "text": "列で並んで待っている傷病者に、氏名・住所等あらかじめ記載してもらうことができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q210", "text": "タグ運搬デバイスを使ったタグの運搬を本部のタグ係と事前打ち合わせできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q211", "text": "記載済トリアージタグ1枚目をタグ運搬デバイスを使って本部へ提出できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q212", "text": "トリアージをスムーズに正しく行うことができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q213", "text": "タグの記載が正しくできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q214", "text": "最後尾のプラカードで、列の最後尾を示すことができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q215", "text": "傷病者をトリアージに並ぶよう案内・誘導できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_kuro", "title": "死亡管理部門（黒エリア）への質問です", "questions": [{"id": "q216", "text": "アクションカードを確認し、活動できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q217", "text": "担当部門内でブリーフィングし、誰が何をするかを確認・指示できましたか？（統括者）あるいは、指示されて自分がやるべきことが理解できましたか？（統括者以外）", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q218", "text": "部門の設営が迅速にできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q219", "text": "電カルを内科外来から持ってくることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q220", "text": "デジカメ、プリンター、写真画紙をＧCUから持ってくることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q221", "text": "受付で、死亡管理被災患者受付一覧を記載できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q222", "text": "死亡検案書を記載、印刷できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q223", "text": "死亡被災患者確認用紙を記入できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q224", "text": "顔写真、歯牙の写真を撮影できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q225", "text": "納体袋に安置し、死亡被災患者確認用紙、顔写真、歯牙写真と共に保管できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_hansou", "title": "搬送部門への質問です", "questions": [{"id": "q226", "text": "前任統括者からの情報の引継ぎができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q227", "text": "アクションカードを確認し、活動できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q228", "text": "担当部門内でブリーフィングし、誰が何をするかを確認・指示できましたか？（統括者）あるいは、指示されて自分がやるべきことが理解できましたか？（統括者以外）", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q229", "text": "部門の設営が迅速にできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q230", "text": "患者搬送のルートを共有できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q231", "text": "赤、黄に搬送要員を派遣・常駐させることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_nyugen", "title": "入院待機エリアへの質問です", "questions": [{"id": "q232", "text": "アクションカードを確認し、活動できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q233", "text": "担当部門内でブリーフィングし、誰が何をするかを確認・指示できましたか？（統括者）あるいは、指示されて自分がやるべきことが理解できましたか？（統括者以外）", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q234", "text": "部門の設営が迅速にできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q235", "text": "待合の椅子をベッドとして使うことができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q236", "text": "受付で、入院待機被災患者受付一覧を記載できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q237", "text": "本部を通して、患者の受け入れができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q238", "text": "エレベーター稼働が再開された後、病棟へ連絡して、スムーズに患者を病棟へ上げることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q239", "text": "電カル上の大規模災害時の院内情報からライフライン状況、各診療科の窓口医師、可能な検査などの情報を得ることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q240", "text": "受付で、入院待機被災患者受付一覧を記載できましたか？（確認）", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_ope", "title": "手術室統括者への質問です", "questions": [{"id": "q241", "text": "電カル上の大規模災害時の院内情報からライフライン状況、各診療科の窓口医師、可能な検査などの情報を得ることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q242", "text": "初療エリアより、手術の申し込みを受けましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q243", "text": "初療エリアに連絡をとって、手術患者の細かい情報を得ることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q244", "text": "必要な職員を本部職員統括に依頼できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q245", "text": "スタッフを集めて、緊急性の高い順に手術を開始できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_icu", "title": "ICU統括者への質問です", "questions": [{"id": "q246", "text": "一般病棟へ移動可能な患者を、一般病棟師長と相談して移動できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q247", "text": "必要な職員を本部職員統括に依頼できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q248", "text": "電カル上の大規模災害時の院内情報からライフライン状況、各診療科の窓口医師、可能な検査などの情報を得ることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q249", "text": "本部からの入院申込依頼を受けることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q250", "text": "初療エリアに連絡をとって、手術患者の細かい情報を得ることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q251", "text": "手術が必要な症例は、手術室へ手術申し込みができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_yakuzai", "title": "薬剤部への質問です", "questions": [{"id": "q252", "text": "赤・黄・緑・入院待機に配備医薬品を配布できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q253", "text": "サテライト薬局を設置し、担当者と配備医薬品を配置できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q254", "text": "サテライト薬局で、帰宅者のタグを収集できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_xray", "title": "中央放射線部への質問です", "questions": [{"id": "q255", "text": "赤エリアにポータブル撮影機と担当者を配備できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q256", "text": "赤患者優先にCT撮影できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q257", "text": "黄患者のXp撮影を手順良くできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q258", "text": "赤患者の合間に黄患者のCT撮影ができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_kensa", "title": "中央検査科への質問です", "questions": [{"id": "q259", "text": "赤患者優先に検査をすることができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_infra", "title": "インフラ整備・ビル管理への質問です", "questions": [{"id": "q260", "text": "本部の指示で、緊急遮断弁を解除できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q261", "text": "緊急遮断弁を解除した旨を本部に報告することができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q262", "text": "本部指示で、中等度節水のための部門断水を行うことができましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}, {"id": "q263", "text": "上記を完了したことを本部に報告できましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_kyushoku", "title": "給食部門への質問です", "questions": [{"id": "q264", "text": "電カルに、給食・ミルク等実施状況をアップできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_bousai", "title": "防災センターへの質問です", "questions": [{"id": "q266b", "text": "防災センターとして、エレベーター被害状況報告書の提出・職員配備カードの提出などの対応はできましたか？", "opts": ["良くできた", "大体できた", "半分ぐらいできた", "ほとんどできなかった", "全くできなかった", "該当しない"], "required": true}]}, {"id": "s_final", "title": "全員最終アンケート", "questions": [{"id": "q266", "text": "今回の訓練は有用であったと思いますか？", "opts": ["そう思う", "ややそう思う", "どちらでもない", "やや思わない", "全く思わない"], "required": true}, {"id": "q267", "text": "今回の訓練で災害対応が理解できましたか？", "opts": ["そう思う", "ややそう思う", "どちらでもない", "やや思わない", "全く思わない"], "required": true}, {"id": "q268", "text": "今回の訓練に参加してよかったと思いますか？", "opts": ["そう思う", "ややそう思う", "どちらでもない", "やや思わない", "全く思わない"], "required": true}, {"id": "q269", "text": "訓練に参加されて、気づいたこと、改善点についてご自由にお書きください", "opts": null, "required": false}]}];
+
+var PASS = 'admin2025';
+var DEFAULT_GAS_URL = ''; // ここにGASのURLを直接入力してください
+var logged = false;
+var curTab = 'edit';
+var sections = null;
+var pageHist = [];
+var curSecId = null;
+var designState = {};
+
+var DEF_DESC = '訓練、大変お疲れ様でした。災害拠点病院として、当院が果たさなければならない役割に向かって、少しずつですが、近づいていけるようにしたいと思います。皆様のご協力・ご尽力に感謝いたします。今後の改善のために役立てたいと思いますので、下記のアンケートにお答えください。';
+
+var BAR_COLORS = ['#2563a8','#1a7a4a','#e85d26','#7c3aed','#0891b2','#be185d','#92400e'];
+
+var Q1_MAP = {
+  '当直勤務医師・当直看護師長・院内ＤMAT医師':'s_chotoku',
+  '病棟看護師・手術室当直看護師・救外当直看護師':'s_byoto',
+  'コメディ・防災センター・ビル管理当直者':'s_comedy',
+  '病院内にたまたまいた医師':'s_iten',
+  '院外から参集':'s_gaiin',
+  '全一般病棟師長':'s_shicyo',
+  '患者役':'s_kanja',
+  'アドバイザー':'s_advisor'
+};
+
+var HONBU_MAE_MAP = {
+  '本部長・設備支援・院外・警備部門':'s_hm',
+  '情報部門（クロノロ、伝令含む）':'s_jm',
+  '職員部門':'s_sm',
+  '診療部門':'s_dm'
+};
+
+var ALL_DEPT_MAP = {
+  '本部：本部長・設備支援・院外・警備部門':'s_hg',
+  '本部：情報部門（クロノロ、伝令含む）':'s_jg',
+  '本部：職員部門':'s_sg',
+  '本部：診療部門':'s_dg',
+  '赤（重症）':'s_aka','黄（中等症）':'s_ki','緑（軽症）':'s_midori',
+  'トリアージ・整理誘導・総合案内':'s_triage','黒（死亡管理）':'s_kuro',
+  '搬送':'s_hansou','入院待機':'s_nyugen','手術室':'s_ope','ICU':'s_icu',
+  '中央放射線':'s_xray','中央検査':'s_kensa','薬剤部':'s_yakuzai','インフラ整備':'s_infra'
+};
+
+var COMEDY_MAP = {
+  '薬剤部':'s_yakuzai','中央放射線':'s_xray','中央検査':'s_kensa',
+  '給食':'s_kyushoku','防災センター':'s_bousai','ビル管理':'s_infra'
+};
+
+var ADV_MAP = {
+  '本部長・副本部長':'s_hm','職員統括':'s_sm','診療統括・診療支援':'s_dm','情報統括':'s_jm',
+  '赤（重症）':'s_aka','黄（中等症）':'s_ki','緑（軽症）':'s_midori',
+  'トリアージ':'s_triage','手術室・ICU・HCU・死亡管理':'s_kuro','入院待機・一般病棟':'s_nyugen'
+};
+
+var BRANCH_MAPS = {honbu_mae:HONBU_MAE_MAP, all_dept:ALL_DEPT_MAP, comedy_dept:COMEDY_MAP, adv_dept:ADV_MAP};
+
+var FONTS = [
+  {v:"'HGMaruGothicMPRO','HG丸ゴシックM-PRO',Meiryo,sans-serif", l:'HG丸ゴシックM-PRO（現在）'},
+  {v:"Meiryo,'Meiryo UI','Yu Gothic UI',sans-serif", l:'メイリオ'},
+  {v:"'Yu Gothic','Yu Gothic UI',sans-serif", l:'游ゴシック'},
+  {v:"'MS PGothic','MS Gothic',sans-serif", l:'MSPゴシック'},
+  {v:"'MS Mincho','MS PMincho',serif", l:'MS明朝'},
+  {v:"Georgia,'Times New Roman',serif", l:'Georgia'}
+];
+
+var BG_PRESETS = ['#f4f6f9','#ffffff','#fff8f0','#f0f4ff','#f0fff4','#fdf0ff','#fff0f0','#1e2d3d','#2d4a3e'];
+var BG_NAMES   = ['デフォルト','白','クリーム','ライトブルー','ミント','ラベンダー','ライトピンク','ダーク','フォレスト'];
+var HDR_PRESETS= ['#0f2d4a','#1a4a3a','#4a1a1a','#2d1a4a','#333333','#1a3a4a'];
+var HDR_NAMES  = ['ネイビー','グリーン','バーガンディ','パープル','ダークグレー','スチール'];
+
+// ===== DATA =====
+function getSecs() {
+  var s = localStorage.getItem('anketo_secs');
+  if(s){try{return JSON.parse(s);}catch(e){}}
+  return JSON.parse(JSON.stringify(DEFAULT_SECTIONS));
+}
+
+function initSecs() {
+  sections = getSecs();
+}
+
+// ===== RENDER SURVEY =====
+function renderSurvey() {
+  var area = document.getElementById('survey-area');
+  area.innerHTML = '';
+
+  // 停止中なら閉鎖画面のみ表示
+  if(!getSurveyOpen()){
+    var closed = document.createElement('div');
+    closed.id = 'pg_closed';
+    closed.innerHTML = '<div class="closed-screen"><div class="closed-screen-icon">&#128683;</div><h2>受付停止中</h2><p>現在、このアンケートの回答受付を停止しています。<br>受付再開までしばらくお待ちください。</p></div>';
+    area.appendChild(closed);
+    return;
+  }
+
+  // 受付中：通常通りページ生成
+  var q1sec = {id:'s_q1',title:'基本情報',questions:[{id:'q1',text:'発災時の役は何ですか？',opts:Object.keys(Q1_MAP),required:true}]};
+  var allSecs = [q1sec].concat(sections);
+  allSecs.forEach(function(sec){
+    var div = document.createElement('div');
+    div.className = 'pg';
+    div.id = 'pg_'+sec.id;
+    div.innerHTML = buildSection(sec);
+    area.appendChild(div);
+  });
+  showPage('pg_s_q1');
+  curSecId = 's_q1';
+}
+
+function buildSection(sec) {
+  var h = '<div class="sh">'+esc(sec.title)+'</div>';
+  sec.questions.forEach(function(q){ h += buildQ(q); });
+  if(sec.id==='s_q1'){
+    h += '<div class="nav"><button class="btn btn-p" onclick="nxtQ1()">次へ</button></div>';
+  } else if(sec.id==='s_final'){
+    h += '<div class="nav"><button class="btn btn-s" onclick="goBack()">戻る</button><button class="btn btn-sub" onclick="submitForm()">送信する</button></div>';
+  } else {
+    h += '<div class="nav"><button class="btn btn-s" onclick="goBack()">戻る</button><button class="btn btn-p" onclick="nxtSec(\''+sec.id+'\')">次へ</button></div>';
+  }
+  return h;
+}
+
+function buildQ(q) {
+  var h = '<div class="qw" id="qw_'+q.id+'">';
+  h += '<div class="ql"><span class="qn">'+q.id.replace('q','')+'</span>'+esc(q.text);
+  if(q.required) h += '<span class="req">*</span>';
+  h += '</div>';
+  if(q.required && q.opts) h += '<div class="hint">1つだけマークしてください。</div>';
+  if(!q.opts){
+    h += '<textarea class="frt" name="'+q.id+'" placeholder="ご自由にお書きください"></textarea>';
+  } else {
+    h += '<div class="opts">';
+    q.opts.forEach(function(opt){
+      h += '<label class="opt"><input type="radio" name="'+q.id+'" value="'+esc(opt)+'"><span class="rd"></span><span class="ot">'+esc(opt)+'</span></label>';
+    });
+    h += '</div>';
+  }
+  if(q.required) h += '<div class="err-msg" id="em_'+q.id+'">この質問は必須です。</div>';
+  h += '</div>';
+  return h;
+}
+
+function esc(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ===== NAV =====
+function showPage(id){
+  document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('act');});
+  var p=document.getElementById(id);
+  if(p)p.classList.add('act');
+  window.scrollTo({top:0,behavior:'smooth'});
+  var all=document.querySelectorAll('.pg');
+  var cur=document.querySelector('.pg.act');
+  if(cur){var idx=Array.from(all).indexOf(cur);document.getElementById('pf').style.width=Math.min(95,Math.round(idx/all.length*100))+'%';}
+  // Q1ページ以外はヘッダーを非表示
+  var hdr=document.getElementById('site-hdr');
+  var hero=document.getElementById('hero-photo');
+  var isQ1=(id==='pg_s_q1');
+  if(hdr)hdr.style.display=isQ1?'':'none';
+  if(hero)hero.style.display=isQ1?'':'none';
+}
+function pushShow(id){
+  var c=document.querySelector('.pg.act');if(c)pageHist.push(c.id);
+  showPage(id);
+}
+function goBack(){if(pageHist.length)showPage(pageHist.pop());}
+
+// ===== VALIDATE =====
+function validate(secId){
+  var sec=(secId==='s_q1')?{questions:[{id:'q1',required:true,opts:['x']}]}:sections.find(function(s){return s.id===secId;});
+  if(!sec)return true;
+  var ok=true;
+  sec.questions.forEach(function(q){
+    if(!q.required)return;
+    var qw=document.getElementById('qw_'+q.id);
+    var em=document.getElementById('em_'+q.id);
+    if(!qw)return;
+    var ans=q.opts?!!document.querySelector('input[name="'+q.id+'"]:checked'):(function(){var ta=document.querySelector('textarea[name="'+q.id+'"]');return ta&&ta.value.trim().length>0;})();
+    if(!ans){
+      qw.classList.add('has-err');
+      if(em)em.classList.add('show');
+      if(ok)qw.scrollIntoView({behavior:'smooth',block:'center'});
+      ok=false;
+    } else {
+      qw.classList.remove('has-err');
+      if(em)em.classList.remove('show');
+    }
+  });
+  return ok;
+}
+
+document.addEventListener('change',function(e){
+  if(e.target.type==='radio'){
+    var n=e.target.name;
+    document.querySelectorAll('input[name="'+n+'"]').forEach(function(r){r.closest('.opt').classList.remove('sel');});
+    e.target.closest('.opt').classList.add('sel');
+    var qw=document.getElementById('qw_'+n);
+    var em=document.getElementById('em_'+n);
+    if(qw)qw.classList.remove('has-err');
+    if(em)em.classList.remove('show');
+  }
+});
+
+function nxtQ1(){
+  if(!validate('s_q1'))return;
+  var v=document.querySelector('input[name="q1"]:checked').value;
+  var t=Q1_MAP[v];
+  pageHist=[];
+  if(t)pushShow('pg_'+t);
+}
+
+function nxtSec(secId){
+  if(!validate(secId))return;
+  var sec=sections.find(function(s){return s.id===secId;});
+  if(!sec){pushShow('pg_s_final');return;}
+  var bq=sec.questions.find(function(q){return q.branch;});
+  if(bq){
+    var el=document.querySelector('input[name="'+bq.id+'"]:checked');
+    if(el){
+      var map=BRANCH_MAPS[bq.branchKey];
+      var t=map&&map[el.value];
+      if(t){pushShow('pg_'+t);return;}
+    }
+  }
+  pushShow('pg_s_final');
+}
+
+// ===== SUBMIT =====
+function submitForm(){
+  if(!validate('s_final'))return;
+  saveResp();
+  document.getElementById('pf').style.width='100%';
+  document.getElementById('survey-area').style.display='none';
+  document.getElementById('ty').classList.add('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function saveResp(){
+  var q1sec={id:'s_q1',title:'基本情報',questions:[{id:'q1',text:'発災時の役は何ですか？',opts:Object.keys(Q1_MAP),required:true}]};
+  var allSecs=[q1sec].concat(sections);
+  var resp={ts:new Date().toISOString(),answers:{}};
+  allSecs.forEach(function(sec){
+    sec.questions.forEach(function(q){
+      var sel='input[name="'+q.id+'"]:checked';
+      var tasel='textarea[name="'+q.id+'"]';
+      if(!q.opts){
+        var ta=document.querySelector(tasel);
+        if(ta&&ta.value.trim())resp.answers[q.id]={text:q.text,value:ta.value.trim(),secId:sec.id,secTitle:sec.title};
+      } else {
+        var el=document.querySelector(sel);
+        if(el)resp.answers[q.id]={text:q.text,value:el.value,opts:q.opts,secId:sec.id,secTitle:sec.title};
+      }
+    });
+  });
+  var saved=JSON.parse(localStorage.getItem('anketo_resp')||'[]');
+  saved.push(resp);
+  localStorage.setItem('anketo_resp',JSON.stringify(saved));
+  // 削除フラグをクリア（新回答があったので）
+  localStorage.removeItem('anketo_cleared');
+
+  // GASへ送信
+  var gasUrl = getGasUrl();
+  if(gasUrl){
+    fetch(gasUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(resp)
+    }).catch(function(err){
+      console.warn('GAS送信エラー:', err);
+    });
+  }
+}
+
+// ===== ADMIN =====
+function openAdm(){
+  document.getElementById('adm-overlay').classList.add('show');
+  if(!logged)renderLogin();
+  else renderTabs();
+}
+function closeAdm(){document.getElementById('adm-overlay').classList.remove('show');}
+
+function renderLogin(){
+  document.getElementById('adm-foot').classList.remove('show');
+  document.getElementById('adm-body').innerHTML='<div class="login-wrap"><h3>&#128272; 管理者パスワード</h3><input type="password" id="adm-pw" placeholder="パスワードを入力" onkeydown="if(event.key===\'Enter\')doLogin()"><button class="btn btn-p" onclick="doLogin()">ログイン</button><div class="login-err" id="login-err">パスワードが違います</div></div>';
+  setTimeout(function(){var e=document.getElementById('adm-pw');if(e)e.focus();},100);
+}
+
+function doLogin(){
+  var pw=document.getElementById('adm-pw').value;
+  if(pw===PASS){logged=true;renderTabs();}
+  else{var e=document.getElementById('login-err');if(e)e.classList.add('show');}
+}
+
+function renderTabs(){
+  document.getElementById('adm-foot').classList.add('show');
+  var body=document.getElementById('adm-body');
+  body.innerHTML='<div class="adm-tabs"><button class="adm-tab act" onclick="switchTab(\'edit\')" id="tab-edit">&#9999; 質問編集</button><button class="adm-tab" onclick="switchTab(\'design\')" id="tab-design">&#127912; デザイン</button><button class="adm-tab" onclick="switchTab(\'results\')" id="tab-results">&#128202; 回答結果</button></div><div id="tab-content"></div>';
+  curTab='edit';
+  setFootEdit();
+  renderEdit();
+}
+
+function switchTab(tab){
+  curTab=tab;
+  document.querySelectorAll('.adm-tab').forEach(function(t){t.classList.remove('act');});
+  var el=document.getElementById('tab-'+tab);
+  if(el)el.classList.add('act');
+  if(tab==='edit'){setFootEdit();renderEdit();}
+  else if(tab==='design'){setFootDesign();renderDesign();}
+  else{setFootResults();renderResults();}
+}
+
+function setFootEdit(){
+  document.getElementById('foot-rst').textContent='初期値に戻す';
+  document.getElementById('foot-rst').onclick=function(){admReset();};
+  document.getElementById('foot-save').textContent='保存して適用';
+  document.getElementById('foot-save').onclick=function(){admSave();};
+  document.getElementById('save-ok').textContent='';
+}
+function setFootDesign(){
+  document.getElementById('foot-rst').textContent='リセット';
+  document.getElementById('foot-rst').onclick=function(){resetDesign();};
+  document.getElementById('foot-save').textContent='適用する';
+  document.getElementById('foot-save').onclick=function(){applyDesign();};
+  document.getElementById('save-ok').textContent='';
+}
+function setFootResults(){
+  document.getElementById('foot-rst').textContent='回答データを削除';
+  document.getElementById('foot-rst').onclick=function(){clearResults();};
+  document.getElementById('foot-save').textContent='&#128424; 印刷する';
+  document.getElementById('foot-save').onclick=function(){printResults();};
+  document.getElementById('save-ok').textContent='';
+}
+function footRst(){} // overridden
+function footSave(){} // overridden
+function showOk(msg){var e=document.getElementById('save-ok');if(e){e.textContent=msg;e.classList.add('show');setTimeout(function(){e.classList.remove('show');e.textContent='';},2000);}}
+
+// ===== EDITOR =====
+function renderEdit(){
+  var tc=document.getElementById('tab-content');
+  if(!tc)return;
+  var isOpen=getSurveyOpen();
+  var sh='<div class="status-toggle-wrap">';
+  sh+='<div class="status-toggle-title">&#128203; 回答受付の管理<span class="status-badge '+(isOpen?'open':'closed')+'" id="status-badge-text">'+(isOpen?'&#9989; 受付中':'&#128683; 停止中')+'</span></div>';
+  sh+='<div class="toggle-row">';
+  sh+='<label class="toggle-switch"><input type="checkbox" id="st-chk" '+(isOpen?'checked':'')+' onchange="toggleStatus(this)"><span class="toggle-slider"></span></label>';
+  sh+='<span class="toggle-label"><span class="on">受付中</span><span class="off">停止中</span></span>';
+  sh+='</div>';
+  sh+='<p style="font-size:11px;color:var(--ts);margin-top:10px;">停止中は回答画面がロックされます。管理画面は引き続き操作できます。</p>';
+  sh+='</div>';
+  // GAS URL設定パネル
+  var gasUrl = localStorage.getItem('anketo_gas_url') || DEFAULT_GAS_URL || '';
+  var gasHtml = '<div class="status-toggle-wrap" style="margin-top:12px;">';
+  gasHtml += '<div class="status-toggle-title">&#128279; Googleスプレッドシート連携</div>';
+  gasHtml += '<div style="margin-bottom:8px;font-size:12px;color:var(--ts);">GASのウェブアプリURLを入力してください</div>';
+  gasHtml += '<div style="display:flex;gap:8px;">';
+  gasHtml += '<input type="text" id="gas-url-input" value="'+gasUrl+'" placeholder="https://script.google.com/macros/s/..." style="flex:1;border:1.5px solid var(--bd);border-radius:5px;padding:7px 10px;font-size:12px;font-family:inherit;">';
+  gasHtml += '<button onclick="saveGasUrl()" style="background:var(--pr);color:#fff;border:none;border-radius:5px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">保存</button>';
+  gasHtml += '</div>';
+  gasHtml += '<div id="gas-status" style="font-size:11px;margin-top:6px;color:var(--ts);">'+(gasUrl?'&#10003; URL設定済み':'未設定（設定するとスプレッドシートに回答が自動送信されます）')+'</div>';
+  if(gasUrl){
+    gasHtml += '<button onclick="downloadWithGasUrl()" style="margin-top:10px;width:100%;background:linear-gradient(135deg,#2e7d52,#1b5e38);color:#fff;border:none;border-radius:6px;padding:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">&#11015; GAS URLを埋め込んだHTMLをダウンロード</button>';
+    gasHtml += '<p style="font-size:11px;color:var(--ts);margin-top:6px;">ダウンロードしたファイルをGitHub Pagesにアップロードすれば、どの端末からでも回答結果が確認できます。</p>';
+  }
+  gasHtml += '</div>';
+  sh += gasHtml;
+
+  var cur=getSecs();
+  var h=sh;
+  cur.forEach(function(sec,si){
+    h+='<div class="sec-item"><div class="sec-hd" onclick="toggleSec('+si+')"><span class="sec-ar" id="ar'+si+'">&#9654;</span><span class="sec-hd-t">'+esc(sec.title)+'</span></div><div class="sec-bd" id="sb'+si+'">';
+    sec.questions.forEach(function(q,qi){
+      var optsH='';
+      if(q.opts){
+        q.opts.forEach(function(o,oi){
+          optsH+='<div class="opt-row"><input type="text" value="'+esc(o)+'" data-si="'+si+'" data-qi="'+qi+'" data-oi="'+oi+'" onchange="chgOpt(this)"><button class="opt-del" onclick="delOpt('+si+','+qi+','+oi+')">&#10005;</button></div>';
+        });
+      } else {
+        optsH='<em style="font-size:12px;color:#999;">自由記述</em>';
+      }
+      h+='<div class="qed"><div class="qed-top"><textarea data-si="'+si+'" data-qi="'+qi+'" onchange="chgQ(this)">'+esc(q.text)+'</textarea><button class="qed-del" onclick="delQ('+si+','+qi+')" title="削除">&#128465;</button></div>';
+      h+='<div class="qed-opts" id="qo'+si+'_'+qi+'">'+optsH+'</div>';
+      if(q.opts)h+='<button class="add-opt-btn" onclick="addOpt('+si+','+qi+')">＋ 選択肢を追加</button>';
+      h+='<div class="qed-req"><input type="checkbox" '+(q.required?'checked':'')+' onchange="chgReq('+si+','+qi+',this)"><label>必須</label></div></div>';
+    });
+    h+='<button class="add-q-btn" onclick="addQ('+si+')">＋ 質問を追加</button></div></div>';
+  });
+  tc.innerHTML=h;
+}
+
+function toggleSec(si){
+  var b=document.getElementById('sb'+si);
+  var a=document.getElementById('ar'+si);
+  if(!b)return;
+  b.classList.toggle('open');
+  a.innerHTML=b.classList.contains('open')?'&#9660;':'&#9654;';
+}
+
+function chgQ(el){var si=+el.dataset.si,qi=+el.dataset.qi;var c=getSecs();c[si].questions[qi].text=el.value;localStorage.setItem('anketo_secs',JSON.stringify(c));}
+function chgOpt(el){var si=+el.dataset.si,qi=+el.dataset.qi,oi=+el.dataset.oi;var c=getSecs();c[si].questions[qi].opts[oi]=el.value;localStorage.setItem('anketo_secs',JSON.stringify(c));}
+function chgReq(si,qi,el){var c=getSecs();c[si].questions[qi].required=el.checked;localStorage.setItem('anketo_secs',JSON.stringify(c));}
+
+function delQ(si,qi){
+  if(!confirm('この質問を削除しますか？'))return;
+  var c=getSecs();c[si].questions.splice(qi,1);localStorage.setItem('anketo_secs',JSON.stringify(c));
+  renderEdit();document.getElementById('sb'+si).classList.add('open');document.getElementById('ar'+si).innerHTML='&#9660;';
+}
+
+function delOpt(si,qi,oi){
+  var c=getSecs();c[si].questions[qi].opts.splice(oi,1);localStorage.setItem('anketo_secs',JSON.stringify(c));
+  var w=document.getElementById('qo'+si+'_'+qi);if(w){var rows=w.querySelectorAll('.opt-row');if(rows[oi])rows[oi].remove();}
+}
+
+function addOpt(si,qi){
+  var c=getSecs();c[si].questions[qi].opts.push('新しい選択肢');localStorage.setItem('anketo_secs',JSON.stringify(c));
+  var oi=c[si].questions[qi].opts.length-1;
+  var w=document.getElementById('qo'+si+'_'+qi);
+  if(w){var row=document.createElement('div');row.className='opt-row';row.innerHTML='<input type="text" value="新しい選択肢" data-si="'+si+'" data-qi="'+qi+'" data-oi="'+oi+'" onchange="chgOpt(this)"><button class="opt-del" onclick="delOpt('+si+','+qi+','+oi+')">&#10005;</button>';w.appendChild(row);row.querySelector('input').focus();row.querySelector('input').select();}
+}
+
+function addQ(si){
+  var c=getSecs();c[si].questions.push({id:'qnew'+Date.now(),text:'新しい質問',opts:['選択肢1','選択肢2'],required:true});
+  localStorage.setItem('anketo_secs',JSON.stringify(c));
+  renderEdit();
+  var sb=document.getElementById('sb'+si);
+  sb.classList.add('open');document.getElementById('ar'+si).innerHTML='&#9660;';
+  sb.lastElementChild.scrollIntoView({behavior:'smooth'});
+}
+
+function admSave(){sections=getSecs();renderSurvey();showOk('&#10003; 保存しました');}
+function admReset(){if(!confirm('初期値に戻しますか？'))return;localStorage.removeItem('anketo_secs');sections=JSON.parse(JSON.stringify(DEFAULT_SECTIONS));renderSurvey();renderEdit();}
+
+// ===== RESULTS =====
+function getResps(){
+  var r1 = JSON.parse(localStorage.getItem('anketo_resp')||'[]');
+  var r2 = JSON.parse(localStorage.getItem('anketo_responses_2025')||'[]');
+  // 両方マージして重複除去
+  var all = r1.concat(r2);
+  var seen = {};
+  return all.filter(function(r){
+    if(!r||!r.ts||seen[r.ts]) return false;
+    seen[r.ts] = true;
+    return true;
+  });
+}
+
+function renderResults(){
+  var tc=document.getElementById('tab-content');if(!tc)return;
+  // 削除済みフラグチェック
+  var cleared = localStorage.getItem('anketo_cleared');
+  if(cleared){
+    tc.innerHTML='<div class="no-data">&#128235; まだ回答データがありません。</div>';
+    return;
+  }
+  tc.innerHTML='<div class="no-data" style="color:var(--ts);padding:30px;text-align:center;">&#8987; データを読み込み中...</div>';
+  var gasUrl=getGasUrl();
+  if(gasUrl){
+    fetchGasData(function(gasResps){
+      if(gasResps && gasResps.length){
+        // GASデータをlocalStorageにマージ
+        var local=getResps();
+        var merged=gasResps.concat(local);
+        // 重複除去（ts基準）
+        var seen={};
+        merged=merged.filter(function(r){if(seen[r.ts])return false;seen[r.ts]=true;return true;});
+        renderResultsWithData(tc,merged);
+      } else {
+        renderResultsWithData(tc,getResps());
+      }
+    });
+  } else {
+    renderResultsWithData(tc,getResps());
+  }
+}
+function renderResultsWithData(tc,resps){
+  if(!resps.length){tc.innerHTML='<div class="no-data">&#128235; まだ回答データがありません。</div>';return;}
+  var q1sec={id:'s_q1',title:'基本情報',questions:[{id:'q1',text:'発災時の役は何ですか？',opts:Object.keys(Q1_MAP),required:true}]};
+  var allSecs=[q1sec].concat(sections);
+  var secMap={};
+  allSecs.forEach(function(sec){
+    secMap[sec.id]={title:sec.title,questions:{}};
+    sec.questions.forEach(function(q){
+      secMap[sec.id].questions[q.id]={text:q.text,opts:q.opts||null,counts:{},freeTexts:[]};
+      if(q.opts)q.opts.forEach(function(o){secMap[sec.id].questions[q.id].counts[o]=0;});
+    });
+  });
+  resps.forEach(function(resp){
+    Object.keys(resp.answers).forEach(function(qid){
+      var a=resp.answers[qid];
+      if(!secMap[a.secId]||!secMap[a.secId].questions[qid])return;
+      var qd=secMap[a.secId].questions[qid];
+      if(a.opts){qd.counts[a.value]=(qd.counts[a.value]||0)+1;}
+      else{qd.freeTexts.push(a.value);}
+    });
+  });
+  var total=resps.length;
+  var deptCnt={};
+  resps.forEach(function(r){var q1=r.answers['q1'];if(q1)deptCnt[q1.value]=(deptCnt[q1.value]||0)+1;});
+  var h='<div class="res-stats"><div class="stat-card"><div class="num">'+total+'</div><div class="lbl">総回答数</div></div>';
+  Object.keys(deptCnt).forEach(function(d){h+='<div class="stat-card" style="background:linear-gradient(135deg,#1a7a4a,#0f5233);"><div class="num">'+deptCnt[d]+'</div><div class="lbl">'+esc(d)+'</div></div>';});
+  h+='</div>';
+  var actSecs={};resps.forEach(function(r){Object.values(r.answers).forEach(function(a){actSecs[a.secId]=true;});});
+  allSecs.forEach(function(sec){
+    if(!actSecs[sec.id])return;
+    var sd=secMap[sec.id];
+    h+='<div class="res-sec"><div class="res-sec-hdr">'+esc(sec.title)+'</div><div class="res-sec-body">';
+    Object.keys(sd.questions).forEach(function(qid){
+      var qd=sd.questions[qid];
+      var hasData=qd.opts?Object.values(qd.counts).some(function(c){return c>0;}):qd.freeTexts.length>0;
+      if(!hasData)return;
+      h+='<div class="res-q"><div class="res-q-text">'+esc(qd.text)+'</div>';
+      if(qd.opts){
+        var tot=Object.values(qd.counts).reduce(function(a,b){return a+b;},0);
+        h+='<div class="res-q-n">回答数: '+tot+'件</div>';
+        h+=buildPie(qd.opts,qd.counts,tot);
+      } else {
+        h+='<div class="res-q-n">回答数: '+qd.freeTexts.length+'件</div><div class="free-wrap">';
+        qd.freeTexts.forEach(function(t){h+='<div class="free-item">&#183; '+esc(t)+'</div>';});
+        h+='</div>';
+      }
+      h+='</div>';
+    });
+    h+='</div></div>';
+  });
+  tc.innerHTML=h;
+}
+
+function buildPie(opts,counts,tot){
+  if(tot===0)return '';
+  var R=70,cx=80,cy=80,r=70;
+  var startAngle=-Math.PI/2;
+  var svgPaths='';
+  var legendH='<div class="pie-legend">';
+  var validOpts=opts.filter(function(o){return (counts[o]||0)>0;});
+
+  validOpts.forEach(function(opt,i){
+    var cnt=counts[opt]||0;
+    var pct=cnt/tot;
+    var col=BAR_COLORS[i%BAR_COLORS.length];
+    var endAngle=startAngle+pct*2*Math.PI;
+
+    if(validOpts.length===1){
+      // 全部同じ場合は円全体を塗る
+      svgPaths+='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="'+col+'"/>';
+    } else {
+      var x1=cx+r*Math.cos(startAngle);
+      var y1=cy+r*Math.sin(startAngle);
+      var x2=cx+r*Math.cos(endAngle);
+      var y2=cy+r*Math.sin(endAngle);
+      var large=pct>0.5?1:0;
+      svgPaths+='<path d="M'+cx+','+cy+' L'+x1.toFixed(2)+','+y1.toFixed(2)+' A'+r+','+r+' 0 '+large+',1 '+x2.toFixed(2)+','+y2.toFixed(2)+' Z" fill="'+col+'"/>';
+    }
+
+    // パーセント表示（5%以上の場合のみセグメント内に表示）
+    if(pct>=0.05){
+      var midAngle=startAngle+pct*Math.PI;
+      var lr=r*0.65;
+      var tx=cx+lr*Math.cos(midAngle);
+      var ty=cy+lr*Math.sin(midAngle);
+      svgPaths+='<text x="'+tx.toFixed(1)+'" y="'+ty.toFixed(1)+'" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-size="11" font-weight="bold">'+Math.round(pct*100)+'%</text>';
+    }
+
+    legendH+='<div class="pie-legend-item"><div class="pie-dot" style="background:'+col+';"></div><span class="pie-legend-label">'+esc(opt)+'</span><span class="pie-legend-cnt">'+cnt+'件 ('+Math.round(pct*100)+'%)</span></div>';
+    startAngle=endAngle;
+  });
+
+  legendH+='</div>';
+
+  var svg='<svg class="pie-svg" width="160" height="160" viewBox="0 0 160 160">'+svgPaths+'<circle cx="'+cx+'" cy="'+cy+'" r="28" fill="#fff"/></svg>';
+
+  return '<div class="pie-wrap">'+svg+legendH+'</div>';
+}
+
+
+function clearResults(){
+  var gasUrl = getGasUrl();
+  var msg = gasUrl
+    ? 'ローカルおよびGoogleスプレッドシートの<br>回答データをすべて削除します。<br><br><strong>この操作は取り消せません。</strong><br>本当に削除しますか？'
+    : 'ローカルの回答データをすべて削除します。<br><br><strong>この操作は取り消せません。</strong><br>本当に削除しますか？';
+  showConfirm('回答データの削除', msg, function(){
+    // 全キー削除
+    localStorage.removeItem('anketo_resp');
+    localStorage.removeItem('anketo_responses_2025');
+    // 削除済みフラグをセット
+    localStorage.setItem('anketo_cleared', Date.now().toString());
+    // GASデータも削除
+    var url = getGasUrl();
+    if(url){
+      var delUrl = url + (url.indexOf('?')>=0 ? '&' : '?') + 'action=deleteAll';
+      fetch(delUrl, {mode:'no-cors'}).catch(function(){});
+    }
+    // 即座に空表示
+    var tc = document.getElementById('tab-content');
+    if(tc) tc.innerHTML = '<div class="no-data">&#128235; まだ回答データがありません。</div>';
+  });
+}
+
+function printResults(){
+  var tc=document.getElementById('tab-content');if(!tc)return;
+  document.getElementById('print-area').innerHTML='<div class="print-hdr"><h1>2025年度実働訓練アンケート 集計結果</h1><p>印刷日時: '+new Date().toLocaleString('ja-JP')+'</p></div>'+tc.innerHTML;
+  window.print();
+}
+
+// ===== DESIGN =====
+function loadDesign(){var s=localStorage.getItem('anketo_design');if(s){try{designState=JSON.parse(s);}catch(e){designState={};}}else designState={};}
+function saveDesign(){localStorage.setItem('anketo_design',JSON.stringify(designState));}
+
+function renderDesign(){
+  var tc=document.getElementById('tab-content');if(!tc)return;
+  loadDesign();var ds=designState;
+  var h='';
+
+  h+='<div class="ds-sec"><div class="ds-sec-title">&#128421; ページ背景色</div>';
+  h+='<div class="ds-row"><div class="ds-lbl">プリセット</div><div class="ds-presets">';
+  BG_PRESETS.forEach(function(c,i){h+='<div class="ds-dot'+(ds.bgColor===c?' act':'')+'" style="background:'+c+';" title="'+BG_NAMES[i]+'" onclick="pickBg(\''+c+'\')"></div>';});
+  h+='</div></div>';
+  h+='<div class="ds-row"><div class="ds-lbl">カスタムカラー</div><input type="color" class="ds-color" id="ds-bg" value="'+(ds.bgColor||'#f4f6f9')+'" oninput="prevBg(this.value)"></div>';
+  h+='</div>';
+
+  h+='<div class="ds-sec"><div class="ds-sec-title">&#127758; ヘッダー上部写真</div>';
+  h+='<div class="ds-img-prev" id="ds-hero-prev" style="height:100px;">'+(ds.heroImg?'<img src="'+ds.heroImg+'" alt="">':'写真を選択してください（横幅に合わせて自動調整されます）')+'</div>';
+  h+='<div style="display:flex;gap:8px;margin-bottom:8px;">';
+  h+='<label class="ds-file-btn">&#128193; 写真を選択<input type="file" accept="image/*" style="display:none;" onchange="loadHeroImg(this)"></label>';
+  if(ds.heroImg) h+='<button class="ds-clear-btn" onclick="clearHeroImg()">写真を削除</button>';
+  h+='</div>';
+  h+='</div>';
+
+  h+='<div class="ds-sec"><div class="ds-sec-title">&#128306; ヘッダー背景色</div>';
+  h+='<div class="ds-row"><div class="ds-lbl">プリセット</div><div class="ds-presets">';
+  HDR_PRESETS.forEach(function(col,i){h+='<div class="ds-dot'+(ds.hdrColor===col?' act':'')+'" style="background:'+col+';" title="'+HDR_NAMES[i]+'" onclick="pickHdr(\''+col+'\')"></div>';});
+  h+='</div></div>';
+  h+='<div class="ds-row"><div class="ds-lbl">カスタムカラー</div><input type="color" class="ds-color" id="ds-hdr-col" value="'+(ds.hdrColor||'#0f2d4a')+'" oninput="prevHdrCol(this.value)"></div>';
+  h+='</div>';
+
+  h+='<div class="ds-sec"><div class="ds-sec-title">&#9999; ヘッダーテキスト</div>';
+  h+='<div class="ds-row"><div class="ds-lbl">バッジ</div><input type="text" class="ds-input" id="ds-badge" value="'+(ds.badge||'2025年度')+'"></div>';
+  h+='<div class="ds-row"><div class="ds-lbl">タイトル</div><input type="text" class="ds-input" id="ds-title" value="'+(ds.title||'実働訓練アンケート')+'"></div>';
+  h+='<div class="ds-lbl" style="margin-bottom:4px;">説明文</div><textarea class="ds-textarea" id="ds-desc">'+(ds.desc||DEF_DESC)+'</textarea>';
+  h+='</div>';
+
+  h+='<div class="ds-sec"><div class="ds-sec-title">&#9888; 注意書き（&#42;は必須）</div>';
+  h+='<div class="ds-row"><div class="ds-lbl">文字色</div><input type="color" class="ds-color" id="ds-rn-col" value="'+(ds.reqNoteCol||'#ffccaa')+'"></div>';
+  h+='<div class="ds-row"><div class="ds-lbl">フォントサイズ</div><input type="range" class="ds-range" id="ds-rn-sz" min="9" max="18" value="'+(ds.reqNoteSz||11)+'" oninput="document.getElementById(\'ds-rn-sz-v\').textContent=this.value+\'px\'"><span class="ds-range-val" id="ds-rn-sz-v">'+(ds.reqNoteSz||11)+'px</span></div>';
+  h+='<div style="margin-top:6px;padding:8px 12px;background:linear-gradient(135deg,#0f2d4a,#1a4a7a);border-radius:6px;"><p style="font-size:'+(ds.reqNoteSz||11)+'px;color:'+(ds.reqNoteCol||'#ffccaa')+';margin:0;">&#42; は必須の質問です（プレビュー）</p></div>';
+  h+='</div>';
+
+  h+='<div class="ds-sec"><div class="ds-sec-title">&#128288; フォント設定</div>';
+  h+='<div class="ds-row"><div class="ds-lbl">フォント</div><select class="ds-select" id="ds-font">';
+  FONTS.forEach(function(f){h+='<option value="'+f.v+'">'+f.l+'</option>';});
+  h+='</select></div>';
+  h+='<div class="ds-row"><div class="ds-lbl">タイトルサイズ</div><input type="range" class="ds-range" id="ds-tsz" min="16" max="40" value="'+(ds.titleSz||23)+'" oninput="document.getElementById(\'ds-tsz-v\').textContent=this.value+\'px\'"><span class="ds-range-val" id="ds-tsz-v">'+(ds.titleSz||23)+'px</span></div>';
+  h+='<div class="ds-row"><div class="ds-lbl">本文サイズ</div><input type="range" class="ds-range" id="ds-bsz" min="10" max="20" value="'+(ds.bodySz||14)+'" oninput="document.getElementById(\'ds-bsz-v\').textContent=this.value+\'px\'"><span class="ds-range-val" id="ds-bsz-v">'+(ds.bodySz||14)+'px</span></div>';
+  h+='<div class="ds-row"><div class="ds-lbl">タイトル文字色</div><input type="color" class="ds-color" id="ds-tcol" value="'+(ds.titleCol||'#ffffff')+'"></div>';
+  h+='<div class="ds-row"><div class="ds-lbl">説明文・注意書き色</div><input type="color" class="ds-color" id="ds-dcol" value="'+(ds.descCol||'#d9e8f5')+'"></div>';
+  h+='<div class="ds-sec"><div class="ds-sec-title">&#10003; 回答完了画面の背景写真</div>';
+  h+='<div class="ds-img-prev" id="ds-ty-prev" style="height:100px;">'+(ds.tyImg?'<img src="'+ds.tyImg+'" alt="">':'写真を選択してください')+'</div>';
+  h+='<div style="display:flex;gap:8px;margin-bottom:8px;">';
+  h+='<label class="ds-file-btn">&#128193; 写真を選択<input type="file" accept="image/*" style="display:none;" onchange="loadTyImg(this)"></label>';
+  if(ds.tyImg) h+='<button class="ds-clear-btn" onclick="clearTyImg()">写真を削除</button>';
+  h+='</div>';
+  h+='<div class="ds-row"><div class="ds-lbl">暗さ調整</div>';
+  h+='<input type="range" class="ds-range" id="ds-ty-ov" min="0" max="80" value="'+(ds.tyOv||45)+'" oninput="prevTyOv(this.value)">';
+  h+='<span class="ds-range-val" id="ds-ty-ov-v">'+(ds.tyOv||45)+'%</span></div>';
+  h+='</div>';
+
+  tc.innerHTML=h;
+  var fsel=document.getElementById('ds-font');
+  if(fsel&&ds.font){for(var i=0;i<fsel.options.length;i++){if(fsel.options[i].value===ds.font){fsel.selectedIndex=i;break;}}}
+}
+
+
+function prevBg(c){document.body.style.background=c;document.documentElement.style.setProperty('--bg',c);}
+function pickBg(c){var el=document.getElementById('ds-bg');if(el)el.value=c;prevBg(c);}
+function prevHdrCol(c){var h=document.getElementById('site-hdr');if(h){h.style.backgroundImage='';h.style.background=c;}}
+function prevOv(v){
+  var h=document.getElementById('site-hdr');if(!h)return;
+}
+
+function applyDesign(){
+  // loadDesign()を呼ばない（designStateの現在値を保持するため）
+  var ds=designState;
+  var bgc=document.getElementById('ds-bg').value;
+  ds.bgColor=bgc;document.body.style.background=bgc;document.documentElement.style.setProperty('--bg',bgc);
+    var hdr=document.getElementById('site-hdr');
+  if(hdr){
+    var hc=document.getElementById('ds-hdr-col').value;
+    ds.hdrColor=hc;
+    hdr.style.backgroundImage='';
+    hdr.style.background=hc;
+    document.documentElement.style.setProperty('--hdr-color',hc);
+  }
+
+  // テキスト入力値を取得してdesignStateに保存
+  var badgeEl=document.getElementById('ds-badge');
+  var titleEl2=document.getElementById('ds-title');
+  var descEl2=document.getElementById('ds-desc');
+  if(badgeEl) ds.badge=badgeEl.value;
+  if(titleEl2) ds.title=titleEl2.value;
+  if(descEl2) ds.desc=descEl2.value;
+  // 画面に反映
+  var be=document.getElementById('hdr-badge'),te=document.getElementById('hdr-title'),de=document.getElementById('hdr-desc');
+  if(be&&ds.badge)be.textContent=ds.badge;
+  if(te&&ds.title)te.textContent=ds.title;
+  if(de&&ds.desc)de.textContent=ds.desc;
+  ds.font=document.getElementById('ds-font').value;
+  ds.titleSz=parseInt(document.getElementById('ds-tsz').value);
+  ds.bodySz=parseInt(document.getElementById('ds-bsz').value);
+  ds.titleCol=document.getElementById('ds-tcol').value;
+  ds.descCol=document.getElementById('ds-dcol').value;
+  document.body.style.fontFamily=ds.font;
+  if(te){te.style.fontSize=ds.titleSz+'px';te.style.color=ds.titleCol;}
+  if(de){de.style.fontSize=ds.bodySz+'px';de.style.color=ds.descCol;}
+  // 注意書き
+  var rnColEl=document.getElementById('ds-rn-col');
+  var rnSzEl=document.getElementById('ds-rn-sz');
+  if(rnColEl){
+    ds.reqNoteCol=rnColEl.value;
+    // ヘッダー上部写真復元
+  if(ds.heroImg) applyHeroImg(ds.heroImg);
+  var rn=document.getElementById('hdr-reqnote');
+    if(rn)rn.style.color=rnColEl.value;
+    var rs=document.getElementById('hdr-reqspan');
+    if(rs)rs.style.color=rnColEl.value;
+    var rt=document.getElementById('hdr-reqtext');
+    if(rt)rt.style.color=rnColEl.value;
+  }
+  if(rnSzEl){
+    ds.reqNoteSz=parseInt(rnSzEl.value);
+    var rn2=document.getElementById('hdr-reqnote');
+    if(rn2)rn2.style.fontSize=rnSzEl.value+'px';
+  }
+  // ヘッダー上部写真
+  if(typeof designState.heroImg !== 'undefined'){
+    applyHeroImg(designState.heroImg||null);
+  }
+  // 完了画面背景
+  if(designState.tyImg){
+    var tyOvEl=document.getElementById('ds-ty-ov');
+    if(tyOvEl) designState.tyOv=parseInt(tyOvEl.value);
+    applyTyImg(designState.tyImg, designState.tyOv||45);
+  }
+  saveDesign();showOk('&#10003; 適用しました');
+}
+
+function resetDesign(){
+  if(!confirm('デザイン設定をリセットしますか？'))return;
+  localStorage.removeItem('anketo_design');designState={};
+  document.body.style.background='#f4f6f9';document.body.style.fontFamily='';document.documentElement.style.setProperty('--bg','#f4f6f9');
+  var hdr=document.getElementById('site-hdr');
+  if(hdr){hdr.style.background='';hdr.style.backgroundImage='';hdr.style.backgroundSize='';}
+  var be=document.getElementById('hdr-badge'),te=document.getElementById('hdr-title'),de=document.getElementById('hdr-desc');
+  if(be)be.textContent='2025年度';
+  if(te){te.textContent='実働訓練アンケート';te.style.fontSize='';te.style.color='';}
+  if(de){de.textContent=DEF_DESC;de.style.fontSize='';de.style.color='';}
+  renderDesign();
+}
+
+function loadSavedDesign(){
+  loadDesign();var ds=designState;
+  if(!Object.keys(ds).length)return;
+  if(ds.bgColor){document.body.style.background=ds.bgColor;document.documentElement.style.setProperty('--bg',ds.bgColor);}
+  var hdr=document.getElementById('site-hdr');
+  if(hdr&&ds.hdrColor){
+    hdr.style.backgroundImage='';
+    hdr.style.background=ds.hdrColor;
+    document.documentElement.style.setProperty('--hdr-color',ds.hdrColor);
+  }
+  var be=document.getElementById('hdr-badge'),te=document.getElementById('hdr-title'),de=document.getElementById('hdr-desc');
+  if(be&&ds.badge)be.textContent=ds.badge;
+  if(te){if(ds.title)te.textContent=ds.title;if(ds.titleSz)te.style.fontSize=ds.titleSz+'px';if(ds.titleCol)te.style.color=ds.titleCol;}
+  if(de){if(ds.desc)de.textContent=ds.desc;if(ds.bodySz)de.style.fontSize=ds.bodySz+'px';if(ds.descCol)de.style.color=ds.descCol;}
+  if(ds.font)document.body.style.fontFamily=ds.font;
+  var rn=document.getElementById('hdr-reqnote');
+  if(rn){
+    if(ds.reqNoteCol)rn.style.color=ds.reqNoteCol;
+    if(ds.reqNoteSz)rn.style.fontSize=ds.reqNoteSz+'px';
+  }
+  // ヘッダー上部写真復元
+  if(ds.heroImg) applyHeroImg(ds.heroImg);
+  // 完了画面背景復元
+  if(ds.tyImg) applyTyImg(ds.tyImg, ds.tyOv||45);
+}
+
+
+// ===== SURVEY STATUS =====
+function getSurveyOpen(){
+  var v=localStorage.getItem('anketo_open');
+  return v===null?true:v==='1';
+}
+function setSurveyOpen(open){
+  localStorage.setItem('anketo_open', open?'1':'0');
+  applyStatus(open);
+}
+function applyStatus(open){
+  var banner = document.getElementById('status-banner');
+  if(banner) banner.style.display = open ? 'none' : 'block';
+  // アンケートを再描画（停止中は閉鎖画面、受付中は通常画面）
+  renderSurvey();
+  // 送信完了画面が出ていたら隠す
+  var ty = document.getElementById('ty');
+  if(ty) ty.classList.remove('show');
+  var sa = document.getElementById('survey-area');
+  if(sa) sa.style.display = '';
+}
+
+function setSurveyOpen(open){
+  localStorage.setItem('anketo_open', open?'1':'0');
+  applyStatus(open);
+}
+function applyStatus(open){
+  var banner = document.getElementById('status-banner');
+  if(banner) banner.style.display = open ? 'none' : 'block';
+
+  var q1pg = document.getElementById('pg_s_q1');
+  var closedPg = document.getElementById('pg_closed');
+  if(!q1pg) return;
+
+  if(!open){
+    // 停止中: Q1を非表示、停止画面を表示
+    q1pg.style.display = 'none';
+    if(closedPg) closedPg.classList.add('act');
+  } else {
+    // 受付中: 停止画面を非表示、Q1を表示
+    if(closedPg) closedPg.classList.remove('act');
+    // Q1が現在のページなら表示
+    if(!document.querySelector('.pg.act') || document.querySelector('.pg.act').id === 'pg_closed'){
+      q1pg.style.display = '';
+      showPage('pg_s_q1');
+    } else {
+      q1pg.style.display = '';
+    }
+  }
+}
+
+function setSurveyOpen(open){
+  localStorage.setItem('anketo_open', open?'1':'0');
+  applyStatus(open);
+}
+function applyStatus(open){
+  // バナー（上部帯）
+  var banner=document.getElementById('status-banner');
+  if(banner){
+    banner.style.display = open ? 'none' : 'block';
+  }
+  // Q1ページを有効/無効化
+  var q1pg=document.getElementById('pg_s_q1');
+  if(!q1pg) return; // まだ生成されていない場合はスキップ
+  if(!open){
+    // 無効化
+    q1pg.classList.add('survey-disabled');
+    if(!document.getElementById('closed-notice')){
+      var notice=document.createElement('div');
+      notice.id='closed-notice';
+      notice.className='survey-closed-notice';
+      notice.innerHTML='<div class="notice-icon">&#128683;</div><h3>現在、回答の受付を停止しています</h3><p>受付再開まで、しばらくお待ちください。</p>';
+      q1pg.insertBefore(notice, q1pg.firstChild);
+    }
+  } else {
+    // 有効化
+    q1pg.classList.remove('survey-disabled');
+    var old=document.getElementById('closed-notice');
+    if(old) old.remove();
+  }
+}
+function loadStatus(){
+  applyStatus(getSurveyOpen());
+}
+
+function toggleStatus(el){
+  var open=el.checked;
+  setSurveyOpen(open);
+  var badge=document.getElementById('status-badge-text');
+  if(badge){badge.textContent=open?'受付中':'停止中';badge.className='status-badge '+(open?'open':'closed');}
+}
+
+
+function saveGasUrl(){
+  var url = document.getElementById('gas-url-input').value.trim();
+  localStorage.setItem('anketo_gas_url', url);
+  DEFAULT_GAS_URL = url; // 実行中のメモリにも反映
+  var st = document.getElementById('gas-status');
+  if(st) st.innerHTML = url ? '&#10003; URL保存しました' : '未設定';
+}
+function getGasUrl(){
+  return localStorage.getItem('anketo_gas_url') || DEFAULT_GAS_URL || '';
+}
+
+
+// ===== CONFIRM DIALOG =====
+var confirmCallback = null;
+function showConfirm(title, msg, onOk){
+  document.getElementById('confirm-title').textContent = title;
+  document.getElementById('confirm-msg').innerHTML = msg;
+  confirmCallback = onOk;
+  document.getElementById('confirm-ok-btn').onclick = function(){
+    var cb = confirmCallback; // 先にコールバックを保存
+    closeConfirm();           // その後ダイアログを閉じる（confirmCallbackがnullになる）
+    if(cb) cb();              // 保存したコールバックを実行
+  };
+  document.getElementById('confirm-overlay').classList.add('show');
+}
+function closeConfirm(){
+  document.getElementById('confirm-overlay').classList.remove('show');
+  confirmCallback = null;
+}
+
+
+// ===== GAS DATA FETCH =====
+function fetchGasData(callback){
+  var url = getGasUrl();
+  if(!url){ callback(null); return; }
+  // GASからデータ取得
+  var fetchUrl = url + '?action=getData';
+  fetch(fetchUrl)
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if(data && data.responses) callback(data.responses);
+      else callback(null);
+    })
+    .catch(function(){ callback(null); });
+}
+
+
+// ===== HERO PHOTO =====
+function loadHeroImg(input){
+  var file=input.files[0];if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(e){
+    designState.heroImg=e.target.result;
+    saveDesign();
+    var prev=document.getElementById('ds-hero-prev');
+    if(prev)prev.innerHTML='<img src="'+e.target.result+'" alt="">';
+    applyHeroImg(e.target.result);
+  };
+  reader.readAsDataURL(file);
+}
+function applyHeroImg(src){
+  var hp=document.getElementById('hero-photo');
+  if(!hp)return;
+  if(src){
+    hp.innerHTML='<img src="'+src+'" alt="ヘッダー写真">';
+    hp.classList.add('show');
+  } else {
+    hp.innerHTML='';
+    hp.classList.remove('show');
+  }
+}
+function clearHeroImg(){
+  designState.heroImg=null;
+  saveDesign();
+  applyHeroImg(null);
+  renderDesign();
+}
+
+
+// ===== THANKYOU BG =====
+function loadTyImg(input){
+  var file=input.files[0];if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(e){
+    designState.tyImg=e.target.result;
+    saveDesign();
+    var prev=document.getElementById('ds-ty-prev');
+    if(prev)prev.innerHTML='<img src="'+e.target.result+'" alt="">';
+    applyTyImg(e.target.result, designState.tyOv||45);
+  };
+  reader.readAsDataURL(file);
+}
+function applyTyImg(src, ov){
+  var photo=document.getElementById('ty-photo');
+  if(!photo)return;
+  if(src){
+    photo.innerHTML='<img src="'+src+'" alt="完了画面背景">';
+    photo.classList.add('show');
+  } else {
+    photo.innerHTML='';
+    photo.classList.remove('show');
+  }
+}
+function prevTyOv(val){
+  var bg=document.getElementById('ty-bg');
+  if(bg) bg.style.setProperty('--ty-ov', val/100);
+  if(designState) designState.tyOv=parseInt(val);
+  var sp=document.getElementById('ds-ty-ov-v');
+  if(sp) sp.textContent=val+'%';
+}
+function clearTyImg(){
+  designState.tyImg=null;
+  applyTyImg(null,45);
+  renderDesign();
+}
+
+
+// ===== DOWNLOAD WITH GAS URL =====
+function downloadWithGasUrl(){
+  var url = getGasUrl();
+  if(!url){ alert('GAS URLが設定されていません。'); return; }
+
+  // 現在のHTMLを取得
+  var html = document.documentElement.outerHTML;
+
+  // DEFAULT_GAS_URL の空文字をURLに置換
+  html = html.replace(
+    "var DEFAULT_GAS_URL = '';",
+    "var DEFAULT_GAS_URL = '" + url + "';"
+  );
+
+  // Blobを作成してダウンロード
+  var blob = new Blob([html], {type: 'text/html;charset=utf-8'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '2025年度実働訓練アンケート.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+
+// ===== INIT =====
+initSecs();
+renderSurvey();
+loadSavedDesign();
+
+</script>
+</body>
+</html>
