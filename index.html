@@ -1,7 +1,7 @@
 <html lang="ja" style="--bg: #f4f6f9; --hdr-color: #c5dcf2;"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>2025年度実働訓練アンケート</title>
+<title>2026年度実働訓練アンケート</title>
 <style>
 :root{--pr:#1a4a7a;--pl:#2563a8;--ac:#e85d26;--bg:#f4f6f9;--cd:#fff;--tx:#1e2d3d;--ts:#5a6a7a;--bd:#d0dbe8;--gr:#2e7d52;--er:#c0392b;}
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -178,6 +178,11 @@ body{font-family:'HGMaruGothicMPRO','HG丸ゴシックM-PRO',Meiryo,'Yu Gothic U
 
 
 .hdr::after{}
+.status-banner{background:#c0392b;color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:700;letter-spacing:.04em;}
+.closed-screen{text-align:center;padding:60px 20px;background:var(--cd);border-radius:8px;border:1px solid var(--bd);margin-top:20px;}
+.closed-screen-icon{font-size:48px;margin-bottom:16px;}
+.closed-screen h2{font-size:20px;color:var(--er);margin-bottom:12px;}
+.closed-screen p{font-size:13.5px;color:var(--ts);line-height:1.8;}
 
 /* PRINT */
 #print-area{display:none;}
@@ -846,7 +851,7 @@ function clearResults(){
 
 function printResults(){
   var tc=document.getElementById('tab-content');if(!tc)return;
-  document.getElementById('print-area').innerHTML='<div class="print-hdr"><h1>2025年度実働訓練アンケート 集計結果</h1><p>印刷日時: '+new Date().toLocaleString('ja-JP')+'</p></div>'+tc.innerHTML;
+  document.getElementById('print-area').innerHTML='<div class="print-hdr"><h1>2026年度実働訓練アンケート 集計結果</h1><p>印刷日時: '+new Date().toLocaleString('ja-JP')+'</p></div>'+tc.innerHTML;
   window.print();
 }
 
@@ -882,7 +887,7 @@ function renderDesign(){
   h+='</div>';
 
   h+='<div class="ds-sec"><div class="ds-sec-title">&#9999; ヘッダーテキスト</div>';
-  h+='<div class="ds-row"><div class="ds-lbl">バッジ</div><input type="text" class="ds-input" id="ds-badge" value="'+(ds.badge||'2025年度')+'"></div>';
+  h+='<div class="ds-row"><div class="ds-lbl">バッジ</div><input type="text" class="ds-input" id="ds-badge" value="'+(ds.badge||'2026年度')+'"></div>';
   h+='<div class="ds-row"><div class="ds-lbl">タイトル</div><input type="text" class="ds-input" id="ds-title" value="'+(ds.title||'実働訓練アンケート')+'"></div>';
   h+='<div class="ds-lbl" style="margin-bottom:4px;">説明文</div><textarea class="ds-textarea" id="ds-desc">'+(ds.desc||DEF_DESC)+'</textarea>';
   h+='</div>';
@@ -998,7 +1003,7 @@ function resetDesign(){
   var hdr=document.getElementById('site-hdr');
   if(hdr){hdr.style.background='';hdr.style.backgroundImage='';hdr.style.backgroundSize='';}
   var be=document.getElementById('hdr-badge'),te=document.getElementById('hdr-title'),de=document.getElementById('hdr-desc');
-  if(be)be.textContent='2025年度';
+  if(be)be.textContent='2026年度';
   if(te){te.textContent='実働訓練アンケート';te.style.fontSize='';te.style.color='';}
   if(de){de.textContent=DEF_DESC;de.style.fontSize='';de.style.color='';}
   renderDesign();
@@ -1052,65 +1057,6 @@ function applyStatus(open){
   if(sa) sa.style.display = '';
 }
 
-function setSurveyOpen(open){
-  localStorage.setItem('anketo_open', open?'1':'0');
-  applyStatus(open);
-}
-function applyStatus(open){
-  var banner = document.getElementById('status-banner');
-  if(banner) banner.style.display = open ? 'none' : 'block';
-
-  var q1pg = document.getElementById('pg_s_q1');
-  var closedPg = document.getElementById('pg_closed');
-  if(!q1pg) return;
-
-  if(!open){
-    // 停止中: Q1を非表示、停止画面を表示
-    q1pg.style.display = 'none';
-    if(closedPg) closedPg.classList.add('act');
-  } else {
-    // 受付中: 停止画面を非表示、Q1を表示
-    if(closedPg) closedPg.classList.remove('act');
-    // Q1が現在のページなら表示
-    if(!document.querySelector('.pg.act') || document.querySelector('.pg.act').id === 'pg_closed'){
-      q1pg.style.display = '';
-      showPage('pg_s_q1');
-    } else {
-      q1pg.style.display = '';
-    }
-  }
-}
-
-function setSurveyOpen(open){
-  localStorage.setItem('anketo_open', open?'1':'0');
-  applyStatus(open);
-}
-function applyStatus(open){
-  // バナー（上部帯）
-  var banner=document.getElementById('status-banner');
-  if(banner){
-    banner.style.display = open ? 'none' : 'block';
-  }
-  // Q1ページを有効/無効化
-  var q1pg=document.getElementById('pg_s_q1');
-  if(!q1pg) return; // まだ生成されていない場合はスキップ
-  if(!open){
-    // 無効化
-    q1pg.classList.add('survey-disabled');
-    if(!document.getElementById('closed-notice')){
-      var notice=document.createElement('div');
-      notice.id='closed-notice';
-      notice.className='survey-closed-notice';
-      notice.innerHTML='<div class="notice-icon">&#128683;</div><h3>現在、回答の受付を停止しています</h3><p>受付再開まで、しばらくお待ちください。</p>';
-      q1pg.insertBefore(notice, q1pg.firstChild);
-    }
-  } else {
-    // 有効化
-    q1pg.classList.remove('survey-disabled');
-    var old=document.getElementById('closed-notice');
-    if(old) old.remove();
-  }
-}
 function loadStatus(){
   applyStatus(getSurveyOpen());
 }
@@ -1251,13 +1197,13 @@ function downloadWithGasUrl(){
     .then(function(html){
       // DEFAULT_GAS_URL の空文字をURLに置換
       html = html.replace(
-        "var DEFAULT_GAS_URL = '';",
+        /var DEFAULT_GAS_URL = '[^']*';/,
         "var DEFAULT_GAS_URL = '" + url + "';"
       );
       var blob = new Blob([html], {type: 'text/html;charset=utf-8'});
       var a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = '2025年度実働訓練アンケート.html';
+      a.download = '2026年度実働訓練アンケート.html';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -1267,7 +1213,7 @@ function downloadWithGasUrl(){
       // フォールバック：元のHTMLソースを使用
       var html = document.documentElement.outerHTML;
       html = html.replace(
-        "var DEFAULT_GAS_URL = '';",
+        /var DEFAULT_GAS_URL = '[^']*';/,
         "var DEFAULT_GAS_URL = '" + url + "';"
       );
       // 管理画面のshowクラスを削除
@@ -1276,7 +1222,7 @@ function downloadWithGasUrl(){
       var blob = new Blob([html], {type: 'text/html;charset=utf-8'});
       var a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = '2025年度実働訓練アンケート.html';
+      a.download = '2026年度実働訓練アンケート.html';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
