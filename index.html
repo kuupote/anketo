@@ -132,6 +132,11 @@ body{font-family:'HGMaruGothicMPRO','HG丸ゴシックM-PRO',Meiryo,'Yu Gothic U
 .free-wrap{background:#f7f9fc;border-radius:6px;padding:10px 12px;}
 .free-item{font-size:13px;padding:5px 0;border-bottom:1px solid #eee;line-height:1.6;}
 .free-item:last-child{border:none;}
+.free-dept-hdr{font-size:12px;font-weight:700;color:var(--pr);margin:10px 0 4px;padding-left:2px;border-left:3px solid var(--pr);padding-left:6px;}
+.dept-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.dept-btn{padding:5px 14px;border-radius:16px;border:1.5px solid var(--bd);background:#fff;font-size:12px;font-weight:700;cursor:pointer;color:var(--ts);font-family:inherit;transition:all .15s;}
+.dept-btn:hover{border-color:var(--pl);color:var(--pl);}
+.dept-btn.act{background:var(--pr);color:#fff;border-color:var(--pr);}
 .no-data{text-align:center;padding:40px;color:var(--ts);font-size:14px;}
 /* DESIGN */
 .ds-sec{margin-bottom:22px;}
@@ -305,6 +310,30 @@ var ADV_MAP = {
 };
 
 var BRANCH_MAPS = {honbu_mae:HONBU_MAE_MAP, all_dept:ALL_DEPT_MAP, comedy_dept:COMEDY_MAP, adv_dept:ADV_MAP};
+var LOCATION_SECS = {
+  's_hm':'本部：本部長・設備支援・院外・警備部門','s_hg':'本部：本部長・設備支援・院外・警備部門',
+  's_jm':'本部：情報部門（クロノロ、伝令含む）','s_jg':'本部：情報部門（クロノロ、伝令含む）',
+  's_sm':'本部：職員部門','s_sg':'本部：職員部門',
+  's_dm':'本部：診療部門','s_dg':'本部：診療部門',
+  's_aka':'赤（重症）','s_ki':'黄（中等症）','s_midori':'緑（軽症）',
+  's_triage':'トリアージ・整理誘導・総合案内','s_kuro':'黒（死亡管理）',
+  's_hansou':'搬送','s_nyugen':'入院待機','s_ope':'手術室','s_icu':'ICU',
+  's_yakuzai':'薬剤部','s_xray':'中央放射線','s_kensa':'中央検査','s_infra':'インフラ整備',
+  's_kyushoku':'給食','s_bousai':'防災センター'
+};
+var LOCATION_ORDER = ['本部：本部長・設備支援・院外・警備部門','本部：情報部門（クロノロ、伝令含む）','本部：職員部門','本部：診療部門','赤（重症）','黄（中等症）','緑（軽症）','トリアージ・整理誘導・総合案内','黒（死亡管理）','搬送','入院待機','手術室','ICU','中央放射線','中央検査','薬剤部','インフラ整備','給食','防災センター','患者役','全一般病棟師長'];
+function getLocation(resp){
+  var secIds=Object.values(resp.answers).map(function(a){return a.secId;});
+  var loc=null;
+  for(var i=0;i<secIds.length;i++){if(LOCATION_SECS[secIds[i]])loc=LOCATION_SECS[secIds[i]];}
+  if(loc)return loc;
+  var q1=resp.answers['q1'];
+  if(q1){
+    if(q1.value==='患者役')return '患者役';
+    if(q1.value==='全一般病棟師長')return '全一般病棟師長';
+  }
+  return null;
+}
 
 var FONTS = [
   {v:"'HGMaruGothicMPRO','HG丸ゴシックM-PRO',Meiryo,sans-serif", l:'HG丸ゴシックM-PRO（現在）'},
@@ -361,7 +390,7 @@ function renderSurvey() {
 
 function buildSection(sec) {
   var h = '<div class="sh">'+esc(sec.title)+'</div>';
-  sec.questions.forEach(function(q){ h += buildQ(q); });
+  sec.questions.forEach(function(q,i){ h += buildQ(q,i+1); });
   if(sec.id==='s_q1'){
     h += '<div class="nav"><button class="btn btn-p" onclick="nxtQ1()">次へ</button></div>';
   } else if(sec.id==='s_final'){
@@ -372,9 +401,9 @@ function buildSection(sec) {
   return h;
 }
 
-function buildQ(q) {
+function buildQ(q,num) {
   var h = '<div class="qw" id="qw_'+q.id+'">';
-  h += '<div class="ql"><span class="qn">'+q.id.replace('q','')+'</span>'+esc(q.text);
+  h += '<div class="ql"><span class="qn">'+(num!=null?num:q.id.replace('q',''))+'</span>'+esc(q.text);
   if(q.required) h += '<span class="req">*</span>';
   h += '</div>';
   if(q.required && q.opts) h += '<div class="hint">1つだけマークしてください。</div>';
@@ -548,10 +577,10 @@ function doLogin(){
 function renderTabs(){
   document.getElementById('adm-foot').classList.add('show');
   var body=document.getElementById('adm-body');
-  body.innerHTML='<div class="adm-tabs"><button class="adm-tab act" onclick="switchTab(\'edit\')" id="tab-edit">&#9999; 質問編集</button><button class="adm-tab" onclick="switchTab(\'design\')" id="tab-design">&#127912; デザイン</button><button class="adm-tab" onclick="switchTab(\'results\')" id="tab-results">&#128202; 回答結果</button></div><div id="tab-content"></div>';
-  curTab='edit';
-  setFootEdit();
-  renderEdit();
+  body.innerHTML='<div id="tab-content"></div>';
+  curTab='results';
+  setFootResults();
+  renderResults();
 }
 
 function switchTab(tab){
@@ -698,6 +727,14 @@ function getResps(){
   });
 }
 
+var _allRespsCache=null;
+var _deptList=[];
+function filterByDept(idx){
+  var dept=_deptList[idx];
+  var tc=document.getElementById('tab-content');
+  if(!tc||!_allRespsCache)return;
+  renderResultsWithData(tc,_allRespsCache,dept);
+}
 function renderResults(){
   var tc=document.getElementById('tab-content');if(!tc)return;
   // 削除済みフラグチェック
@@ -726,8 +763,13 @@ function renderResults(){
     renderResultsWithData(tc,getResps());
   }
 }
-function renderResultsWithData(tc,resps){
+function renderResultsWithData(tc,resps,filterDept){
   if(!resps.length){tc.innerHTML='<div class="no-data">&#128235; まだ回答データがありません。</div>';return;}
+  _allRespsCache=resps;
+  var deptCntAll={};
+  resps.forEach(function(r){var loc=getLocation(r);if(loc)deptCntAll[loc]=(deptCntAll[loc]||0)+1;});
+  var curFilter=filterDept||'全体';
+  var filteredResps=(curFilter!=='全体')?resps.filter(function(r){return getLocation(r)===curFilter;}):resps;
   var q1sec={id:'s_q1',title:'基本情報',questions:[{id:'q1',text:'発災時の役は何ですか？',opts:Object.keys(Q1_MAP),required:true}]};
   var allSecs=[q1sec].concat(sections);
   var secMap={};
@@ -738,22 +780,25 @@ function renderResultsWithData(tc,resps){
       if(q.opts)q.opts.forEach(function(o){secMap[sec.id].questions[q.id].counts[o]=0;});
     });
   });
-  resps.forEach(function(resp){
+  filteredResps.forEach(function(resp){
+    var loc=getLocation(resp);
     Object.keys(resp.answers).forEach(function(qid){
       var a=resp.answers[qid];
       if(!secMap[a.secId]||!secMap[a.secId].questions[qid])return;
       var qd=secMap[a.secId].questions[qid];
       if(a.opts){qd.counts[a.value]=(qd.counts[a.value]||0)+1;}
-      else{qd.freeTexts.push(a.value);}
+      else{qd.freeTexts.push({text:a.value,dept:loc});}
     });
   });
-  var total=resps.length;
-  var deptCnt={};
-  resps.forEach(function(r){var q1=r.answers['q1'];if(q1)deptCnt[q1.value]=(deptCnt[q1.value]||0)+1;});
-  var h='<div class="res-stats"><div class="stat-card"><div class="num">'+total+'</div><div class="lbl">総回答数</div></div>';
-  Object.keys(deptCnt).forEach(function(d){h+='<div class="stat-card" style="background:linear-gradient(135deg,#1a7a4a,#0f5233);"><div class="num">'+deptCnt[d]+'</div><div class="lbl">'+esc(d)+'</div></div>';});
+  var total=filteredResps.length;
+  _deptList=['全体'].concat(LOCATION_ORDER);
+  var h='<div class="dept-filter">';
+  _deptList.forEach(function(d,i){var cnt=deptCntAll[d]||0;h+='<button class="dept-btn'+(curFilter===d?' act':'')+'" onclick="filterByDept('+i+')">'+esc(d)+(cnt?' ('+cnt+')':'')+'</button>';});
   h+='</div>';
-  var actSecs={};resps.forEach(function(r){Object.values(r.answers).forEach(function(a){actSecs[a.secId]=true;});});
+  h+='<div class="res-stats"><div class="stat-card"><div class="num">'+total+'</div><div class="lbl">'+(curFilter==='全体'?'総回答数':esc(curFilter)+'の回答数')+'</div></div>';
+  if(curFilter==='全体'){Object.keys(deptCntAll).forEach(function(d){h+='<div class="stat-card" style="background:linear-gradient(135deg,#1a7a4a,#0f5233);"><div class="num">'+deptCntAll[d]+'</div><div class="lbl">'+esc(d)+'</div></div>';});}
+  h+='</div>';
+  var actSecs={};filteredResps.forEach(function(r){Object.values(r.answers).forEach(function(a){actSecs[a.secId]=true;});});
   allSecs.forEach(function(sec){
     if(!actSecs[sec.id])return;
     var sd=secMap[sec.id];
@@ -768,9 +813,26 @@ function renderResultsWithData(tc,resps){
         h+='<div class="res-q-n">回答数: '+tot+'件</div>';
         h+=buildPie(qd.opts,qd.counts,tot);
       } else {
-        h+='<div class="res-q-n">回答数: '+qd.freeTexts.length+'件</div><div class="free-wrap">';
-        qd.freeTexts.forEach(function(t){h+='<div class="free-item">&#183; '+esc(t)+'</div>';});
-        h+='</div>';
+        h+='<div class="res-q-n">回答数: '+qd.freeTexts.length+'件</div>';
+        if(curFilter==='全体'){
+          var byDept={};var noDept=[];
+          qd.freeTexts.forEach(function(ft){if(ft.dept){if(!byDept[ft.dept])byDept[ft.dept]=[];byDept[ft.dept].push(ft.text);}else{noDept.push(ft.text);}});
+          LOCATION_ORDER.forEach(function(d){
+            if(!byDept[d])return;
+            h+='<div class="free-dept-hdr">'+esc(d)+'</div><div class="free-wrap">';
+            byDept[d].forEach(function(t){h+='<div class="free-item">&#183; '+esc(t)+'</div>';});
+            h+='</div>';
+          });
+          if(noDept.length){
+            h+='<div class="free-dept-hdr" style="color:var(--ts);border-color:var(--ts);">部門未検出</div><div class="free-wrap">';
+            noDept.forEach(function(t){h+='<div class="free-item">&#183; '+esc(t)+'</div>';});
+            h+='</div>';
+          }
+        } else {
+          h+='<div class="free-wrap">';
+          qd.freeTexts.forEach(function(ft){h+='<div class="free-item">&#183; '+esc(ft.text)+'</div>';});
+          h+='</div>';
+        }
       }
       h+='</div>';
     });
